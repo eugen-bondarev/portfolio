@@ -43,4 +43,4 @@ jobs:
           context: ./app
           file: ./app/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-nginx
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/portfolio-app
