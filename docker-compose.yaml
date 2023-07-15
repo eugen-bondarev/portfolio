@@ -9,7 +9,7 @@ services:
       - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
   php:
     build:
-      context: ./config/php
+      context: ./app
     volumes:
       - ./app:/var/www/html
   db:
