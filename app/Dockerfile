@@ -6,8 +6,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 COPY . /var/www/files
 
-WORKDIR /var/www/html
+WORKDIR /var/www/files
 
 RUN composer install
+
+WORKDIR /var/www/html
 
 CMD "cp /var/www/files /var/www/html"
