@@ -1,10 +1,10 @@
 <?php
 
-echo 'Hello world!';
+// echo 'Hello world!';
 
-exit;
+// exit;
 /**
  * WordPress View Bootstrapper
  */
-// define('WP_USE_THEMES', true);
-// require __DIR__ . '/wp/wp-blog-header.php';
+define('WP_USE_THEMES', true);
+require __DIR__ . '/wp/wp-blog-header.php';
