@@ -4,8 +4,10 @@ RUN apt-get update && apt-get install -y curl unzip git
 RUN docker-php-ext-install pdo_mysql mysqli
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY . /var/www/html
+COPY . /var/www/files
 
 WORKDIR /var/www/html
 
 RUN composer install
+
+CMD "cp /var/www/files /var/www/html"
