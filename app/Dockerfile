@@ -12,4 +12,5 @@ RUN composer install
 
 WORKDIR /var/www/html
 
-CMD "cp -TRv /var/www/files /var/www/html"
+CMD "cp -r /var/www/files/* /var/www/html"
+# CMD "cp -TRv /var/www/files /var/www/html"
