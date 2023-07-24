@@ -9,7 +9,7 @@ pipeline {
           - name: docker
             image: node:18.16.0-alpine
             command:
-            - cat
+            - ls
             tty: true
         '''
     }
