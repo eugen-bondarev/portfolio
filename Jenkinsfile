@@ -8,8 +8,6 @@ pipeline {
           containers:
           - name: docker
             image: node:18.16.0-alpine
-            command:
-            - ls
             tty: true
         '''
     }
