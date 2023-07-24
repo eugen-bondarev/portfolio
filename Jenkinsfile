@@ -22,7 +22,9 @@ pipeline {
     // }
     stage('Test') {
       steps {
-        sh 'node --version'
+        container(node) {
+          sh 'node --version'
+        }
       }
     }
   }
