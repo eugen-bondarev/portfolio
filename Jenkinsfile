@@ -23,7 +23,7 @@ pipeline {
     stage('Test') {
       steps {
         container('docker') {
-          sh 'node --version'
+          sh 'ls'
         }
       }
     }
