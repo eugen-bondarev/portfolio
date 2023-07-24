@@ -1,6 +1,19 @@
 pipeline {
   agent {
-    docker { image 'node:18.16.0-alpine' }
+    kubernetes {
+      yaml '''
+        apiVersion: v1
+        kind: Pod
+        spec:
+          containers:
+          - name: docker
+            image: node:18.16.0-alpine
+            command:
+            - cat
+            tty: true
+        '''
+    }
+    // docker { image 'node:18.16.0-alpine' }
   }
   stages { 
     // stage('Initialize') {
