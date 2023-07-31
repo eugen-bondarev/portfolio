@@ -6,6 +6,7 @@ web/app/themes/twentytwentythree/
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
+!web/app/plugins/portfolio-control
 web/app/cache/*
 
 # WordPress
