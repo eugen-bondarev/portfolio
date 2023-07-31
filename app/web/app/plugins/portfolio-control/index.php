@@ -36,14 +36,14 @@ class PortfolioControl
 
 	private function exportDBCallback(WP_REST_Request $request)
 	{
-		// $cmd = 'php ./vendor/bin/wp --allow-root db export test.sql';
 		$cmd = '../vendor/bin/wp --allow-root db export test.sql';
 		return shell_exec($cmd);
 	}
 
 	private function importDBCallback(WP_REST_Request $request)
 	{
-		return 'importing db..';
+		$cmd = '../vendor/bin/wp --allow-root db import test.sql';
+		return shell_exec($cmd);
 	}
 
 	private function test(WP_REST_Request $request)
