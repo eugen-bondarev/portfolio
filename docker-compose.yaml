@@ -12,6 +12,13 @@ services:
       context: ./app
     volumes:
       - ./app:/var/www/html
+  backup-service:
+    build:
+      context: ./backup-service
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backup-service:/var/www/html
   db:
     image: mysql:latest
     ports:
