@@ -8,47 +8,41 @@
  * Text Domain: portfolio-control
  */
 
-class PortfolioControl
-{
-	public function __construct()
-	{
-		add_action('rest_api_init', fn () => $this->restAPIInit());
+class PortfolioControl {
+	public function __construct() {
+		add_action( 'rest_api_init', fn() => $this->restAPIInit() );
 	}
 
-	private function restAPIInit()
-	{
-		register_rest_route('v2', '/export-db', [
+	private function restAPIInit() {
+		register_rest_route( 'v2', '/export-db', [ 
 			'permission_callback' => '__return_true',
 			'methods' => WP_REST_Server::READABLE,
-			'callback' => fn (...$args) => $this->exportDBCallback(...$args)
-		]);
-		register_rest_route('v2', '/import-db', [
+			'callback' => fn( ...$args ) => $this->exportDBCallback( ...$args )
+		] );
+		register_rest_route( 'v2', '/import-db', [ 
 			'permission_callback' => '__return_true',
 			'methods' => WP_REST_Server::READABLE,
-			'callback' => fn (...$args) => $this->importDBCallback(...$args)
-		]);
-		register_rest_route('v2', '/test', [
+			'callback' => fn( ...$args ) => $this->importDBCallback( ...$args )
+		] );
+		register_rest_route( 'v2', '/test', [ 
 			'permission_callback' => '__return_true',
 			'methods' => WP_REST_Server::READABLE,
-			'callback' => fn (...$args) => $this->test(...$args)
-		]);
+			'callback' => fn( ...$args ) => $this->test( ...$args )
+		] );
 	}
 
-	private function exportDBCallback(WP_REST_Request $request)
-	{
-		$cmd = '../vendor/bin/wp --allow-root db export test.sql';
-		return shell_exec($cmd);
+	private function exportDBCallback( WP_REST_Request $request ) {
+		$cmd = '../vendor/bin/wp --allow-root db export /test.sql';
+		return shell_exec( $cmd );
 	}
 
-	private function importDBCallback(WP_REST_Request $request)
-	{
-		$cmd = '../vendor/bin/wp --allow-root db import test.sql';
-		return shell_exec($cmd);
+	private function importDBCallback( WP_REST_Request $request ) {
+		$cmd = '../vendor/bin/wp --allow-root db import /test.sql';
+		return shell_exec( $cmd );
 	}
 
-	private function test(WP_REST_Request $request)
-	{
-		return shell_exec('ls /');
+	private function test( WP_REST_Request $request ) {
+		return shell_exec( 'ls /' );
 	}
 }
 
