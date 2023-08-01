@@ -14,9 +14,10 @@ WORKDIR /var/www/html
 
 RUN chown -R www-data:www-data /var/www
 
-# RUN mkdir /root/.ssh
+RUN mkdir /root/.ssh
+RUN chmod -R 400 ~/.ssh &&
+RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
+
 # RUN cat /keys/github | base64 -d > ~/.ssh/id_rsa
 # RUN cp /keys/github.pub ~/.ssh/github.pub
-# RUN chmod -R 400 ~/.ssh &&
-# RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
 # RUN cd  git clone git@github.com:eugen-bondarev/linode-cluster-db-backup.git /var/www/linode-cluster-db-backup
