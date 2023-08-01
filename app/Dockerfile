@@ -12,6 +12,9 @@ RUN composer install
 
 WORKDIR /var/www/html
 
+RUN chown -R www-data:www-data /var/www
+USER www-data
+
 # RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 # RUN chmod +x wp-cli.phar
 # CMD "ls"
