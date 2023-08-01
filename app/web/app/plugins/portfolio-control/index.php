@@ -27,11 +27,6 @@ class PortfolioControl {
 			'methods' => WP_REST_Server::READABLE,
 			'callback' => fn( ...$args ) => $this->importDBCallback( ...$args )
 		] );
-		register_rest_route( 'v2', '/test', [ 
-			'permission_callback' => '__return_true',
-			'methods' => WP_REST_Server::READABLE,
-			'callback' => fn( ...$args ) => $this->test( ...$args )
-		] );
 	}
 
 	private static function wp( string $wpCliCmd ) {
