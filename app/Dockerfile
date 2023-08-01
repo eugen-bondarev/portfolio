@@ -12,18 +12,11 @@ RUN composer install
 
 WORKDIR /var/www/html
 
-
-# ARG UNAME=www-data
-# ARG UGROUP=www-data
-# ARG UID=1000
-# ARG GID=1001
-# RUN usermod  --uid $UID $UNAME
-# RUN groupmod --gid $GID $UGROUP
 RUN chown -R www-data:www-data /var/www
-# USER www-data
 
-# RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-# RUN chmod +x wp-cli.phar
-# CMD "ls"
-# CMD "cp -a /var/www/files/. /var/www/html"
-# CMD "cp -TRv /var/www/files /var/www/html"
+RUN mkdir /root/.ssh
+RUN cat /keys/github | base64 -d > ~/.ssh/id_rsa
+RUN cp /keys/github.pub ~/.ssh/github.pub
+RUN chmod -R 400 ~/.ssh &&
+RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
+RUN cd  git clone git@github.com:eugen-bondarev/linode-cluster-db-backup.git /var/www/linode-cluster-db-backup
