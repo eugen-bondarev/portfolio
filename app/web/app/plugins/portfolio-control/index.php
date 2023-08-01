@@ -32,12 +32,12 @@ class PortfolioControl {
 	}
 
 	private function exportDBCallback( WP_REST_Request $request ) {
-		$cmd = '/var/www/html/vendor/bin/wp --allow-root db export /test.sql';
+		$cmd = '/var/www/html/vendor/bin/wp --allow-root db export db-dump.sql';
 		return shell_exec( $cmd );
 	}
 
 	private function importDBCallback( WP_REST_Request $request ) {
-		$cmd = '/var/www/html/vendor/bin/wp --allow-root db import /test.sql';
+		$cmd = '/var/www/html/vendor/bin/wp --allow-root db import db-dump.sql';
 		return shell_exec( $cmd );
 	}
 
