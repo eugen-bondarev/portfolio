@@ -12,8 +12,15 @@ RUN composer install
 
 WORKDIR /var/www/html
 
-RUN chown -R www-data:www-data /var/www
-USER www-data
+
+ARG UNAME=www-data
+ARG UGROUP=www-data
+ARG UID=1000
+ARG GID=1001
+RUN usermod  --uid $UID $UNAME
+RUN groupmod --gid $GID $UGROUP
+# RUN chown -R www-data:www-data /var/www
+# USER www-data
 
 # RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 # RUN chmod +x wp-cli.phar
