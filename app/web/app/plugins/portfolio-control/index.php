@@ -9,6 +9,9 @@
  */
 
 class PortfolioControl {
+	private const PATH_TO_WP_CLI = '/var/www/html/vendor/bin/wp';
+	private const PATH_TO_DUMP = '/var/www/linode-cluster-db-backup/backup.sql';
+
 	public function __construct() {
 		add_action( 'rest_api_init', fn() => $this->restAPIInit() );
 	}
@@ -31,14 +34,17 @@ class PortfolioControl {
 		] );
 	}
 
-	private function exportDBCallback( WP_REST_Request $request ) {
-		$cmd = '/var/www/html/vendor/bin/wp --allow-root db export db-dump.sql';
+	private static function wp( string $wpCliCmd ) {
+		$cmd = static::PATH_TO_WP_CLI . ' --allow-root ' . $wpCliCmd;
 		return shell_exec( $cmd );
 	}
 
+	private function exportDBCallback( WP_REST_Request $request ) {
+		return static::wp( 'db export ' . static::PATH_TO_DUMP );
+	}
+
 	private function importDBCallback( WP_REST_Request $request ) {
-		$cmd = '/var/www/html/vendor/bin/wp --allow-root db import db-dump.sql';
-		return shell_exec( $cmd );
+		return static::wp( 'db import ' . static::PATH_TO_DUMP );
 	}
 
 	private function test( WP_REST_Request $request ) {
@@ -48,27 +54,3 @@ class PortfolioControl {
 }
 
 new PortfolioControl;
-
-// add_action('rest_api_init', function () {
-// 	register_rest_route('v2', '/export-db', [
-// 		'methods' => WP_REST_Server::READABLE,
-// 		'permission_callback' => '__return_true',
-// 		'callback' => function () {
-// 			return shell_exec('php wp-cli.phar --allow-root db export test.sql');
-// 		}
-// 	]);
-// 	register_rest_route('v2', '/import-db', [
-// 		'methods' => WP_REST_Server::READABLE,
-// 		'permission_callback' => '__return_true',
-// 		'callback' => function () {
-// 			return shell_exec('php wp-cli.phar --allow-root db import test.sql');
-// 		}
-// 	]);
-// 	register_rest_route('v2', '/test', [
-// 		'methods' => WP_REST_Server::READABLE,
-// 		'permission_callback' => '__return_true',
-// 		'callback' => function () {
-// 			return shell_exec('ls /var/www/html');
-// 		}
-// 	]);
-// });
