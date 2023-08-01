@@ -35,7 +35,13 @@ class PortfolioControl {
 	}
 
 	private function exportDBCallback( WP_REST_Request $request ) {
-		return static::wp( 'db export ' . static::PATH_TO_DUMP );
+		$output = [ 
+			static::wp( 'db export ' . static::PATH_TO_DUMP ),
+			shell_exec( 'cd /var/www/linode-cluster-db-backup && git add .' ),
+			shell_exec( 'cd /var/www/linode-cluster-db-backup && git commit -m "Update"' ),
+			shell_exec( 'cd /var/www/linode-cluster-db-backup && git push' ),
+		];
+		return $output;
 	}
 
 	private function importDBCallback( WP_REST_Request $request ) {
