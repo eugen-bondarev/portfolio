@@ -29,8 +29,8 @@ class PortfolioControl {
 		] );
 	}
 
-	private static function wp( string $wpCliCmd ) {
-		$cmd = static::PATH_TO_WP_CLI . ' --allow-root ' . $wpCliCmd;
+	private static function wp( string $wp_cli_cmd ) {
+		$cmd = static::PATH_TO_WP_CLI . ' --allow-root ' . $wp_cli_cmd;
 		return shell_exec( $cmd );
 	}
 
