@@ -14,9 +14,9 @@ WORKDIR /var/www/html
 
 RUN chown -R www-data:www-data /var/www
 
-RUN mkdir /root/.ssh
-RUN chmod -R 400 ~/.ssh
-RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
+# RUN mkdir /root/.ssh
+# RUN chmod -R 400 ~/.ssh
+# RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 # RUN cat /keys/github | base64 -d > ~/.ssh/id_rsa
 # RUN cp /keys/github.pub ~/.ssh/github.pub
