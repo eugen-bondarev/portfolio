@@ -46,6 +46,7 @@ class PortfolioControl {
 	private function exportDBCallback( WP_REST_Request $request ) {
 		$output = [ 
 			static::wp( 'db export ' . static::PATH_TO_DUMP ),
+			execWithErrors( 'git config --global user.email "eug.bondarev@gmail.com"' ),
 			execWithErrors( 'cd /var/www/linode-cluster-db-backup; git add .' ),
 			execWithErrors( 'cd /var/www/linode-cluster-db-backup; git commit -m "Update"' ),
 			execWithErrors( 'cd /var/www/linode-cluster-db-backup; git push' ),
