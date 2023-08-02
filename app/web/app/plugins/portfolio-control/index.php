@@ -8,6 +8,10 @@
  * Text Domain: portfolio-control
  */
 
+function execWithErrors( $cmd ) {
+	return shell_exec( "$cmd 2>&1" );
+}
+
 class PortfolioControl {
 	private const PATH_TO_WP_CLI = '/var/www/html/vendor/bin/wp';
 	private const PATH_TO_DUMP = '/var/www/linode-cluster-db-backup/backup.sql';
@@ -36,15 +40,15 @@ class PortfolioControl {
 
 	private static function wp( string $wp_cli_cmd ) {
 		$cmd = static::PATH_TO_WP_CLI . ' --allow-root ' . $wp_cli_cmd;
-		return shell_exec( $cmd );
+		return execWithErrors( $cmd );
 	}
 
 	private function exportDBCallback( WP_REST_Request $request ) {
 		$output = [ 
 			static::wp( 'db export ' . static::PATH_TO_DUMP ),
-			shell_exec( 'cd /var/www/linode-cluster-db-backup; git add .' ),
-			shell_exec( 'cd /var/www/linode-cluster-db-backup; git commit -m "Update"' ),
-			shell_exec( 'cd /var/www/linode-cluster-db-backup; git push' ),
+			execWithErrors( 'cd /var/www/linode-cluster-db-backup; git add .' ),
+			execWithErrors( 'cd /var/www/linode-cluster-db-backup; git commit -m "Update"' ),
+			execWithErrors( 'cd /var/www/linode-cluster-db-backup; git push' ),
 		];
 		return $output;
 	}
@@ -55,7 +59,7 @@ class PortfolioControl {
 
 	private function test( WP_REST_Request $request ) {
 		$cmd = urldecode( $request['cmd'] );
-		return shell_exec( $cmd );
+		return execWithErrors( $cmd );
 	}
 }
 
