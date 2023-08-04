@@ -68,18 +68,21 @@ class PortfolioControl {
 	}
 
 	private function exportDBCallback( WP_REST_Request $request ) {
-		$output = [ 
+		return [ 
 			static::wp( 'db export ' . static::PATH_TO_DUMP ),
 			execWithErrors( 'git config --global user.email "eug.bondarev@gmail.com"' ),
 			execWithErrors( 'cd ' . self::PATH_TO_DUMP_REPO . '; git add .' ),
 			execWithErrors( 'cd ' . self::PATH_TO_DUMP_REPO . '; git commit -m "Update"' ),
 			execWithErrors( 'cd ' . self::PATH_TO_DUMP_REPO . '; git push' ),
 		];
-		return $output;
 	}
 
 	private function importDBCallback( WP_REST_Request $request ) {
-		return static::wp( 'db import ' . static::PATH_TO_DUMP );
+		return [ 
+			execWithErrors( 'git config --global user.email "eug.bondarev@gmail.com"' ),
+			execWithErrors( 'cd ' . self::PATH_TO_DUMP_REPO . '; git pull' ),
+			static::wp( 'db import ' . static::PATH_TO_DUMP )
+		];
 	}
 }
 
