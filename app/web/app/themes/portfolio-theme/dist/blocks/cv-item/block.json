@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "portfolio-theme/cv-item",
+  "title": "CV Item",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "paragraph": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "category": "text",
+  "version": "1.0.0",
+  "textdomain": "portfolio-theme"
+}

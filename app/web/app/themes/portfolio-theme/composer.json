@@ -1,0 +1,23 @@
+{
+  "name": "eugbo/portfolio-theme",
+  "autoload": {
+    "psr-4": {
+      "Eugbo\\PortfolioTheme\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Eugen Bondarev",
+      "email": "eug.bondarev@gmail.com"
+    }
+  ],
+  "require-dev": {
+    "php-stubs/wordpress-stubs": "^6.1",
+    "php-stubs/woocommerce-stubs": "^7.6"
+  },
+  "require": {
+    "twig/twig": "3.0",
+    "illuminate/collections": "^8.83",
+    "eftec/bladeone": "^4.9"
+  }
+}

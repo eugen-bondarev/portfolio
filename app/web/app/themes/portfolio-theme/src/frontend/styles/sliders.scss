@@ -1,0 +1,16 @@
+.products,
+.reviews {
+  @media screen and (min-width: 700px) {
+    .swiper-wrapper {
+      flex-wrap: wrap;
+      gap: 1rem;
+      .swiper-slide {
+        flex-basis: calc(33.3333% - 0.666rem - 1px);
+        margin-right: unset !important;
+        & > div {
+          max-width: unset;
+        }
+      }
+    }
+  }
+}

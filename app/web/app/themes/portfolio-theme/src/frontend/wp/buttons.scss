@@ -1,0 +1,186 @@
+.wp-element-button,
+.anima-forms-library-button {
+  @apply text-light-1 py-3 px-6 rounded-full transition whitespace-nowrap bg-accent;
+  &:not(.no-hover) {
+    @apply hover:bg-light-2 hover:text-accent;
+  }
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.13);
+  text-decoration: none;
+  line-height: 36px;
+}
+
+button.primary-btn {
+  &.inactive {
+    pointer-events: none;
+  }
+  @apply outline-none flex rounded-full transition whitespace-nowrap px-6 py-4 text-light-1 bg-accent text-2xl;
+  &:not(.no-hover) {
+    @apply hover:bg-light-2 hover:text-accent;
+  }
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.13);
+  text-decoration: none;
+
+  transition: all 0.15s ease-in-out !important;
+  &:not(.success) {
+    .success-icon {
+      display: none;
+    }
+  }
+  &:not(.loading) {
+    .loading-icon {
+      display: none;
+    }
+  }
+  svg {
+    margin-bottom: 4px !important;
+    margin-top: 4px !important;
+    width: 1em;
+    height: 1em;
+  }
+  &:not(.extend) {
+    &.loading,
+    &.success {
+      span:first-child {
+        display: none;
+      }
+    }
+  }
+  &.extend {
+    &.loading,
+    &.success {
+      &:not(.no-text) {
+        @apply pr-14 #{!important};
+      }
+    }
+    position: relative;
+    span {
+      svg {
+        position: absolute;
+        right: 1.25rem;
+        top: 50%;
+        transform: translateY(-0.7em);
+      }
+    }
+  }
+  &.small {
+    span:first-child {
+      @apply text-base;
+    }
+  }
+}
+
+.wp-block-button {
+  display: flex;
+  a,
+  div,
+  button {
+    transition: all 0.15s ease-in-out !important;
+    &:not(.loading) {
+      .loading-icon {
+        display: none;
+      }
+    }
+    &:not(.success) {
+      .success-icon {
+        display: none;
+      }
+    }
+    svg {
+      margin-bottom: 4px !important;
+      width: 1em;
+      height: 1em;
+    }
+  }
+  &:not(.extend) {
+    a {
+      &.loading,
+      &.success {
+        span:first-child {
+          display: none;
+        }
+      }
+    }
+  }
+  &.extend {
+    a {
+      &.loading,
+      &.success {
+        &:not(.no-text) {
+          @apply pr-14 #{!important};
+        }
+      }
+      position: relative;
+      span:last-child {
+        svg {
+          position: absolute;
+          right: 1.25rem;
+          top: 0.7em;
+        }
+      }
+    }
+  }
+
+  &.disabled {
+    a,
+    div,
+    button {
+      @apply opacity-50 bg-subtitle-1 pointer-events-none #{!important};
+    }
+  }
+
+  @apply text-2xl;
+  &.small {
+    a,
+    div,
+    button {
+      @apply p-3;
+    }
+  }
+  &:not(.small) {
+    a,
+    div,
+    button {
+      @apply px-6 py-2;
+    }
+  }
+  a,
+  div,
+  button {
+    @apply rounded-full transition whitespace-nowrap;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.13);
+    text-decoration: none;
+  }
+  &:not(.is-style-outline):not(.is-style-light) {
+    @apply text-light-1;
+    &:not(.no-hover) {
+      a,
+      div,
+      button {
+        @apply hover:bg-light-2 hover:text-accent;
+      }
+    }
+    a,
+    div,
+    button {
+      @apply bg-accent;
+    }
+  }
+  &.is-style-light {
+    a,
+    div,
+    button {
+      @apply bg-white hover:bg-light-2 text-accent #{!important};
+    }
+  }
+  &.is-style-outline {
+    a,
+    div,
+    button {
+      @apply rounded-full text-accent border-accent hover:text-light-1 hover:bg-accent #{!important};
+    }
+  }
+}
+
+button.af-disabled {
+  @apply opacity-50 bg-subtitle-1 pointer-events-none #{!important};
+}

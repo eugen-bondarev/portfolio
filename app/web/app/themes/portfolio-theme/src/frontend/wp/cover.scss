@@ -1,0 +1,28 @@
+.wp-block-cover {
+  @apply ml-[-50vw] mr-[-50vw] left-1/2 right-1/2 max-w-[unset] relative w-screen px-10 sm:px-0 py-10;
+  .wp-block-cover__inner-container {
+    @apply mx-auto text-current container;
+    .wp-block-columns {
+      @apply mb-0;
+    }
+    .wp-block-heading:first-child {
+      @apply mt-0;
+    }
+    p:last-child {
+      @apply mb-0;
+    }
+  }
+}
+
+.wp-block-cover {
+  &:not(.is-light) {
+    .wp-block-cover__inner-container {
+      @apply text-light-1;
+    }
+  }
+  &.is-light {
+    .wp-block-cover__inner-container {
+      @apply text-dark-2;
+    }
+  }
+}
