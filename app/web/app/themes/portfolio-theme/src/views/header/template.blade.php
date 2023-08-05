@@ -1,26 +1,15 @@
-<header
-    class="transition prose lg:mb-16 lg:prose-xl backdrop-blur-md bg-gray-300/50 shadow-lg sticky top-[var(--sticky-top-height)] z-10">
-    <div class="text-center py-1 bg-accent text-light-1 uppercase">
-        Nur heute - kostenlose Lieferung!
-    </div>
+<header class="transition prose lg:mb-16 lg:prose-xl backdrop-blur-md bg-gray-300/50 shadow-lg sticky top-[var(--sticky-top-height)] z-10">
     <div style="box-shadow: none; background: transparent;" class="py-3 pt-4 lg:py-5">
         <div class="container px-4 lg:px-0 m-auto flex flex-col lg:flex-row items-end lg:items-center justify-between">
             <div class="flex w-full lg:w-auto justify-between items-center">
                 <div class="flex not-prose">
                     <div>
                         <a href="/">
-                            <img loading="lazy" class="m-0 h-11"
-                                src="/wp-content/uploads/2023/05/Logo_Dark-removebg-preview.png" alt="Logo">
+                            <img loading="lazy" class="m-0 h-11" src="/wp-content/uploads/2023/05/Logo_Dark-removebg-preview.png" alt="Logo">
                         </a>
                     </div>
                 </div>
                 <div class="flex lg:hidden items-center gap-2 text-dark-1">
-                    <div class="relative lg:hidden">
-                        @include('partials/reactComponent.blade.php', [
-                            'props' => [],
-                            'component' => 'CartButton',
-                        ])
-                    </div>
                     <a href="/mein-konto" class="flex items-center justify-center text-3xl w-12 h-12 outline-none">
                         @svg('assets/svg/account.svg')
                     </a>
@@ -35,18 +24,11 @@
             </div>
             <div class="flex items-center gap-4">
                 @include('partials/reactComponent.blade.php', [
-                    'props' => $menu,
-                    'component' => 'HeaderMenu',
-                    'class' => 'w-full',
+                'props' => $menu,
+                'component' => 'HeaderMenu',
+                'class' => 'w-full',
                 ])
-                <div class="relative hidden lg:block">
-                    @include('partials/reactComponent.blade.php', [
-                        'props' => [],
-                        'component' => 'CartButton',
-                    ])
-                </div>
-                <a href="/mein-konto"
-                    class="hidden lg:flex items-center justify-center text-3xl w-12 h-12 outline-none">
+                <a href="/mein-konto" class="hidden lg:flex items-center justify-center text-3xl w-12 h-12 outline-none">
                     @svg('assets/svg/account.svg')
                 </a>
             </div>

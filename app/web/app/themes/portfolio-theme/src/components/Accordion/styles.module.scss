@@ -1,6 +1,6 @@
 .accordion {
   @apply flex gap-2 flex-wrap md:flex-nowrap;
-  [data-ecommerce-theme-component]:not(:last-child),
+  [data-portfolio-theme-component]:not(:last-child),
   :global(.wp-block:not(:last-child)) {
     @apply border-b-2 border-light-1;
     :global(.dark) & {

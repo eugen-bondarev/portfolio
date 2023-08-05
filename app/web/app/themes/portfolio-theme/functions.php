@@ -5,47 +5,49 @@ namespace PortfolioTheme;
 use WP_Query;
 
 
-function getVariants( $value ) {
+function getVariants($value)
+{
 	$MAX_STARS     = 5;
-	$numFullStars  = floor( $value );
-	$numEmptyStars = $MAX_STARS - ceil( $value );
-	$numHalfStars  = $MAX_STARS - ( $numFullStars + $numEmptyStars );
-	return collect( [] )
-		->pad( $numFullStars, 'full' )
-		->pad( $numFullStars + $numHalfStars, 'half' )
-		->pad( $MAX_STARS, 'empty' )
+	$numFullStars  = floor($value);
+	$numEmptyStars = $MAX_STARS - ceil($value);
+	$numHalfStars  = $MAX_STARS - ($numFullStars + $numEmptyStars);
+	return collect([])
+		->pad($numFullStars, 'full')
+		->pad($numFullStars + $numHalfStars, 'half')
+		->pad($MAX_STARS, 'empty')
 		->all();
 }
 
-require_once( __DIR__ . '/vendor/autoload.php' );
+require_once(__DIR__ . '/vendor/autoload.php');
 
 add_filter(
-	'ecommerce-theme/inject-data',
-	fn($data) => array_merge(
+	'portfolio-theme/inject-data',
+	fn ($data) => array_merge(
 		$data,
-		[ 
+		[
 			'loggedIn' => wp_get_current_user()->ID !== 0 ? 'true' : 'false'
 		]
 	)
 );
 
-add_action( 'wp_head', function () {
+add_action('wp_head', function () {
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1"/>';
 	echo '<meta name="theme-color" content="#3A40CF" />';
-} );
+});
 
-add_action( 'after_setup_theme', function () {
-	add_theme_support( 'title-tag' );
-	add_theme_support( 'post-thumbnails' );
-} );
+add_action('after_setup_theme', function () {
+	add_theme_support('title-tag');
+	add_theme_support('post-thumbnails');
+});
 
-foreach ( glob( __DIR__ . '/src/lib/*.php' ) as $file ) {
-	require_once( $file );
+foreach (glob(__DIR__ . '/src/lib/*.php') as $file) {
+	require_once($file);
 }
 
-function enqueueStyle( string $handle, string $webpackEntry ) {
+function enqueueStyle(string $handle, string $webpackEntry)
+{
 	$stylePath = '/dist/' . $webpackEntry . '.css';
-	if ( ! file_exists( get_template_directory() . $stylePath ) ) {
+	if (!file_exists(get_template_directory() . $stylePath)) {
 		return;
 	}
 	wp_enqueue_style(
@@ -53,8 +55,9 @@ function enqueueStyle( string $handle, string $webpackEntry ) {
 		get_template_directory_uri() . $stylePath
 	);
 }
-function enqueueEntry( string $handle, string $webpackEntry, $injectData = [], bool $inFooter = false ) {
-	$asset      = require( __DIR__ . '/dist/' . $webpackEntry . '.asset.php' );
+function enqueueEntry(string $handle, string $webpackEntry, $injectData = [], bool $inFooter = false)
+{
+	$asset      = require(__DIR__ . '/dist/' . $webpackEntry . '.asset.php');
 	$scriptPath = '/dist/' . $webpackEntry . '.js';
 	wp_enqueue_script(
 		$handle,
@@ -64,50 +67,50 @@ function enqueueEntry( string $handle, string $webpackEntry, $injectData = [], b
 		$inFooter
 	);
 
-	if ( ! empty( $injectData ) ) {
+	if (!empty($injectData)) {
 		$scriptToInject = "window['$handle'] = {};";
-		foreach ( $injectData as $key => $value ) {
-			$stringifiedValue = json_encode( $value );
+		foreach ($injectData as $key => $value) {
+			$stringifiedValue = json_encode($value);
 			$scriptToInject .= "window['$handle'].$key = $stringifiedValue;";
 		}
-		wp_add_inline_script( $handle, $scriptToInject, 'before' );
+		wp_add_inline_script($handle, $scriptToInject, 'before');
 	}
 
-	enqueueStyle( $handle, $webpackEntry );
+	enqueueStyle($handle, $webpackEntry);
 }
 
-add_action( 'wp_enqueue_scripts', function () {
-	if ( ! defined( 'WOOCOMMERCE_CART' ) )
-		define( 'WOOCOMMERCE_CART', TRUE );
-	$data = apply_filters( 'ecommerce-theme/inject-data', [] );
-	enqueueEntry( 'ecommerce-theme/frontend', 'frontend', $data );
-	enqueueStyle( 'ecommerce-theme/frontend/tailwind', 'tailwind' );
-} );
+add_action('wp_enqueue_scripts', function () {
+	if (!defined('WOOCOMMERCE_CART'))
+		define('WOOCOMMERCE_CART', TRUE);
+	$data = apply_filters('portfolio-theme/inject-data', []);
+	enqueueEntry('portfolio-theme/frontend', 'frontend', $data);
+	enqueueStyle('portfolio-theme/frontend/tailwind', 'tailwind');
+});
 
-add_action( 'enqueue_block_editor_assets', function () {
-	$data = [ 
-		'blocksInjectData' => apply_filters( 'ecommerce-theme/blocks/inject-data', [] )
+add_action('enqueue_block_editor_assets', function () {
+	$data = [
+		'blocksInjectData' => apply_filters('portfolio-theme/blocks/inject-data', [])
 	];
-	enqueueEntry( 'ecommerce-theme/blocks', 'blocks', $data );
-	enqueueStyle( 'ecommerce-theme/blocks/tailwind', 'tailwind' );
-} );
+	enqueueEntry('portfolio-theme/blocks', 'blocks', $data);
+	enqueueStyle('portfolio-theme/blocks/tailwind', 'tailwind');
+});
 
-foreach ( glob( __DIR__ . '/src/actions/*.php' ) as $file ) {
-	require_once( $file );
+foreach (glob(__DIR__ . '/src/actions/*.php') as $file) {
+	require_once($file);
 }
 
 // WOO
-add_theme_support( 'woocommerce' );
+add_theme_support('woocommerce');
 
-add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+add_filter('woocommerce_enqueue_styles', '__return_empty_array');
 
 
 
-add_action( 'wp_enqueue_scripts', function () {
+add_action('wp_enqueue_scripts', function () {
 	// wp_dequeue_style( 'wp-block-library' );
-	wp_dequeue_style( 'wp-block-library-theme' );
-	wp_dequeue_style( 'wc-blocks-style' ); // Remove WooCommerce block CSS
-}, 100 );
+	wp_dequeue_style('wp-block-library-theme');
+	wp_dequeue_style('wc-blocks-style'); // Remove WooCommerce block CSS
+}, 100);
 
 
 // Enable Gutenberg in WooCommerce
@@ -165,7 +168,7 @@ add_action( 'wp_enqueue_scripts', function () {
 // 	return $styles;
 // } );
 
-$productCustomFields = [ 
+$productCustomFields = [
 	'defaultVariant' => [],
 	'gallery'        => [],
 	'page'           => [],
@@ -175,7 +178,8 @@ $productCustomFields = [
 ];
 
 // Display Fields
-add_action( 'woocommerce_product_options_advanced',
+add_action(
+	'woocommerce_product_options_advanced',
 	function () {
 		global $woocommerce, $post;
 		echo '<div class="product_custom_field">';
@@ -207,9 +211,9 @@ add_action( 'woocommerce_product_options_advanced',
 		// 	)
 		// );
 		global $productCustomFields;
-		foreach ( $productCustomFields as $fieldName => $params ) {
+		foreach ($productCustomFields as $fieldName => $params) {
 			woocommerce_wp_textarea_input(
-				[ 
+				[
 					'id'          => $fieldName,
 					'placeholder' => $fieldName,
 					'label'       => $fieldName
@@ -218,15 +222,17 @@ add_action( 'woocommerce_product_options_advanced',
 		}
 
 		echo '</div>';
-	} );
+	}
+);
 
-add_action( 'woocommerce_process_product_meta',
+add_action(
+	'woocommerce_process_product_meta',
 	function ($post_id) {
 		global $productCustomFields;
-		foreach ( $productCustomFields as $fieldName => $params ) {
-			$value = $_POST[ $fieldName ];
-			if ( ! empty( $value ) )
-				update_post_meta( $post_id, $fieldName, esc_attr( $value ) );
+		foreach ($productCustomFields as $fieldName => $params) {
+			$value = $_POST[$fieldName];
+			if (!empty($value))
+				update_post_meta($post_id, $fieldName, esc_attr($value));
 		}
 		// $woocommerce_custom_product_number_field = $_POST['_custom_product_number_field'];
 		// if ( ! empty( $woocommerce_custom_product_number_field ) )

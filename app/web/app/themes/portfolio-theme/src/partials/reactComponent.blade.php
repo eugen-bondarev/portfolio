@@ -1,6 +1,5 @@
-<div class="{{ $class }}" data-ecommerce-theme-component={{ $component }}
-    data-ecommerce-theme-props="{{ json_encode($props) }}">
+<div class="{{ $class }}" data-portfolio-theme-component={{ $component }} data-portfolio-theme-props="{{ json_encode($props) }}">
     @if (isset($slot))
-        {!! $slot !!}
+    {!! $slot !!}
     @endif
 </div>

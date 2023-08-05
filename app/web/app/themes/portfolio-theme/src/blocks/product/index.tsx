@@ -1,23 +1,23 @@
-import { InspectorControls, useBlockProps } from '@wordpress/block-editor'
-import { TextControl } from '@wordpress/components'
-import metadata from './block.json'
-import ServerSideRender from '@wordpress/server-side-render'
-import renderApps from '../../frontend/render-apps'
-import { useRef, useEffect } from 'react'
+import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
+import { TextControl } from "@wordpress/components";
+import metadata from "./block.json";
+import ServerSideRender from "@wordpress/server-side-render";
+import renderApps from "../../frontend/render-apps";
+import { useRef, useEffect } from "react";
 
 export const settings = {
   ...metadata,
   edit: ({ attributes, setAttributes }: any) => {
-    const ref = useRef()
-    const blockProps = useBlockProps({ ref })
+    const ref = useRef();
+    const blockProps = useBlockProps({ ref });
 
     useEffect(() => {
       if (!ref.current) {
-        return
+        return;
       }
-      const timeoutId = setTimeout(() => renderApps(ref.current), 1000)
-      return () => clearTimeout(timeoutId)
-    }, [ref, attributes])
+      const timeoutId = setTimeout(() => renderApps(ref.current), 1000);
+      return () => clearTimeout(timeoutId);
+    }, [ref, attributes]);
 
     return (
       <>
@@ -32,11 +32,11 @@ export const settings = {
         </InspectorControls>
         <div {...blockProps}>
           <ServerSideRender
-            block="ecommerce-theme/product"
+            block="portfolio-theme/product"
             attributes={attributes}
           />
         </div>
       </>
-    )
+    );
   },
-}
+};

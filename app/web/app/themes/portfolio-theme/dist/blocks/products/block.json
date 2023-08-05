@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "ecommerce-theme/products",
+  "name": "portfolio-theme/products",
   "title": "Products",
   "attributes": {
     "productIds": {
@@ -10,5 +10,5 @@
   },
   "category": "text",
   "version": "1.0.0",
-  "textdomain": "ecommerce-theme"
+  "textdomain": "portfolio-theme"
 }

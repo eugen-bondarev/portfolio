@@ -1,9 +1,9 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "ecommerce-theme/accordion",
+  "name": "portfolio-theme/accordion",
   "title": "Accordion",
   "category": "text",
   "version": "1.0.0",
-  "textdomain": "ecommerce-theme"
+  "textdomain": "portfolio-theme"
 }

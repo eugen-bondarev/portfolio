@@ -1,5 +1,5 @@
 {
-  "name": "eugbo/ecommerce-theme",
+  "name": "eugbo/portfolio-theme",
   "autoload": {
     "psr-4": {
       "Eugbo\\PortfolioTheme\\": "src/"

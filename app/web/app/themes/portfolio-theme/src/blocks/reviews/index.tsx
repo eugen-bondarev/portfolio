@@ -1,7 +1,7 @@
-import { InspectorControls, useBlockProps } from '@wordpress/block-editor'
-import { TextControl } from '@wordpress/components'
-import metadata from './block.json'
-import ServerSideRender from '@wordpress/server-side-render'
+import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
+import { TextControl } from "@wordpress/components";
+import metadata from "./block.json";
+import ServerSideRender from "@wordpress/server-side-render";
 
 export const settings = {
   ...metadata,
@@ -19,11 +19,11 @@ export const settings = {
         </InspectorControls>
         <div {...useBlockProps()}>
           <ServerSideRender
-            block="ecommerce-theme/reviews"
+            block="portfolio-theme/reviews"
             attributes={attributes}
           />
         </div>
       </>
-    )
+    );
   },
-}
+};
