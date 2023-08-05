@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "ecommerce-theme/product",
+  "title": "Product",
+  "attributes": {
+    "productId": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "category": "text",
+  "version": "1.0.0",
+  "textdomain": "ecommerce-theme"
+}

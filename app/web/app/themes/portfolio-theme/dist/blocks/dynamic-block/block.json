@@ -1,0 +1,10 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "ecommerce-theme/dynamic-block",
+  "title": "Dynamic Block",
+  "category": "text",
+  "icon": "star",
+  "version": "1.0.0",
+  "textdomain": "ecommerce-theme"
+}

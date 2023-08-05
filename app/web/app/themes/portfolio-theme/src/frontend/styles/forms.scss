@@ -1,0 +1,35 @@
+.anima-forms {
+  .form-step {
+    &:not(.hidden) {
+      @apply flex flex-col gap-2;
+    }
+
+    [data-component='library.components.Text'] {
+      input,
+      textarea {
+        @apply outline-none rounded-sm text-dark-1 px-2;
+      }
+      .af-error.af-touched {
+        input,
+        textarea {
+          @apply border-red-1 border-solid border-l-[2px];
+        }
+      }
+    }
+
+    [data-component='library.components.Button'] {
+      button {
+        @apply rounded-xl transition whitespace-nowrap bg-white text-accent mt-4;
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.13);
+        padding: calc(0.667em + 2px) calc(1.333em + 2px);
+        text-decoration: none;
+        &:not(.af-disabled) {
+          @apply hover:bg-light-2;
+        }
+        &.af-disabled {
+          @apply text-light-2 cursor-auto;
+        }
+      }
+    }
+  }
+}

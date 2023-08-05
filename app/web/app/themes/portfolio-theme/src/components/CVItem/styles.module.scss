@@ -1,0 +1,50 @@
+:global(.wp-block-cover:not(.is-light)) {
+  .cvItem {
+    --line-color: var(--wp--preset--color--light-1);
+  }
+}
+:global(.wp-block-cover.is-light) {
+  .cvItem {
+    --line-color: var(--wp--preset--color--dark-1);
+  }
+}
+
+.cvItem {
+  $line-width: 8px;
+  $gap: 3rem;
+  display: flex;
+  gap: $gap;
+  --shift: -0px;
+  @media screen and (max-width: 1024px) {
+    --shift: -4px;
+  }
+  .title {
+    hyphens: auto;
+  }
+  .line {
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      border: 7px solid var(--line-color);
+      border-radius: 50px;
+      left: -8px;
+      top: calc(-50px + var(--shift));
+    }
+    width: $line-width;
+    background: var(--line-color);
+    border-radius: 0px;
+    margin-top: calc(67px + var(--shift));
+    margin-bottom: calc(11px - var(--shift));
+  }
+  .content {
+    width: calc(100% - $line-width - $gap);
+    @apply flex flex-col gap-4 pb-10;
+    p {
+      @apply mt-0 #{!important};
+    }
+  }
+}

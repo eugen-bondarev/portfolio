@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "ecommerce-theme/logo",
+  "title": "Logo",
+  "category": "text",
+  "icon": "logo",
+  "attributes": {
+    "nodes": {
+      "type": "string",
+      "default": ""
+    },
+    "additionalConnections": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "version": "1.0.0",
+  "textdomain": "ecommerce-theme"
+}

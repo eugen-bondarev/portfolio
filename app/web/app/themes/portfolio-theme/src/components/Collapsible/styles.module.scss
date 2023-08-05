@@ -1,0 +1,23 @@
+.collapsible {
+  overflow: hidden;
+  .wrapper {
+    &,
+    * {
+      margin: 0 !important;
+    }
+  }
+  .title {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+  & > div {
+    height: 0;
+    transition: 150ms ease-out;
+  }
+  &.open {
+    & > div {
+      height: var(--height);
+    }
+  }
+}
