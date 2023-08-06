@@ -1,6 +1,7 @@
 <main class="prose dark:text-light-1 lg:prose-xl">
     <div class="container m-auto px-10 sm:px-0">
-        @foreach ($projects as $project)
+        {!! $content !!}
+        {{-- @foreach ($projects as $project)
             <div class="flex justify-between gap-8">
                 <div class="flex flex-col gap-3">
                     <h2 class="!my-0">
@@ -27,6 +28,6 @@
                     </source>
                 </video>
             </div>
-        @endforeach
+        @endforeach --}}
     </div>
 </main>

@@ -74,6 +74,28 @@ add_action('save_post', function ($post_id) {
 });
 
 add_action('save_post', function ($post_id) {
+	if (!isset($_POST['featured_img_nonce'])) {
+		return;
+	}
+
+	if (!wp_verify_nonce($_POST['featured_img_nonce'], basename(__FILE__))) {
+		return;
+	}
+
+	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		return;
+	}
+
+	if (!current_user_can('edit_post', $post_id)) {
+		return;
+	}
+
+	if (isset($_POST['featured_img'])) {
+		update_post_meta($post_id, 'featured_img', sanitize_text_field($_POST['featured_img']));
+	}
+});
+
+add_action('save_post', function ($post_id) {
 	if (!isset($_POST['github_link_nonce'])) {
 		return;
 	}
