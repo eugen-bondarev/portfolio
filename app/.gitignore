@@ -8,6 +8,7 @@ web/app/uploads/*
 !web/app/uploads/.gitkeep
 !web/app/plugins/portfolio-control
 web/app/cache/*
+!web/app/cache/.gitkeep
 
 # WordPress
 web/wp
