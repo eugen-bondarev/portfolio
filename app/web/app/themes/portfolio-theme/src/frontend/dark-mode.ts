@@ -12,7 +12,7 @@ const darkMode =
 
 window.addEventListener("DOMContentLoaded", () => {
   // console.log({ systemDarkMode, darkMode })
-  // setClass(getHtml(), "dark", darkMode);
+  setClass(getHtml(), "dark", darkMode);
 });
 
 export {};

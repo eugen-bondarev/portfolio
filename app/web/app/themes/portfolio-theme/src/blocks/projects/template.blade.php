@@ -1,6 +1,6 @@
-<div class="flex flex-col gap-[128px] pt-10 mb-20">
+<div class="flex flex-col gap-[64px] md:gap-[128px] pt-5 md:pt-10 mb-20">
     @foreach ($projects as $project)
-        <div class="flex justify-between gap-8">
+        <div class="flex justify-between max-md:flex-wrap-reverse gap-8">
             <div class="flex flex-col gap-3">
                 <h2 class="!my-0">
                     <a class="font-bold" href="{{ $project->url }}">
@@ -24,13 +24,20 @@
                 </div>
             </div>
             @if ($project->video)
-                <video class="w-[400px]" autoplay loop muted>
+                <video class="w-[400px] max-md:w-full" autoplay loop muted>
                     <source src="{{ $project->video }}">
                     </source>
                 </video>
             @elseif ($project->img)
-                <img src="{{ $project->img }}" class="w-[400px]" />
+                <img src="{{ $project->img }}" class="w-[400px] max-md:w-full" />
             @endif
         </div>
+        @php
+            $last = $loop->index === count($projects) - 1;
+        @endphp
+
+        @if (!$last)
+            <div class="h-1 w-full bg-subtitle-1 opacity-20 rounded-md"></div>
+        @endif
     @endforeach
 </div>

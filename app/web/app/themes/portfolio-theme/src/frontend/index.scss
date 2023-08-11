@@ -116,6 +116,13 @@ select {
   }
 }
 
+.mobile-align-center {
+  * {
+    text-align: center;
+    justify-content: center !important;
+  }
+}
+
 // ANIMA FORMS
 .newsletter {
   &.wp-block-columns {

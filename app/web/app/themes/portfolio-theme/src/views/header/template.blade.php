@@ -6,9 +6,6 @@
                 <div class="flex not-prose">
                 </div>
                 <div class="flex lg:hidden items-center gap-2 text-dark-1">
-                    <a href="/mein-konto" class="flex items-center justify-center text-3xl w-12 h-12 outline-none">
-                        @svg('assets/svg/account.svg')
-                    </a>
                     <div id="hamburger-menu" class="w-12 h-12 flex items-center justify-center">
                         <div class="flex lg:hidden flex-col items-end gap-[6px]">
                             {{-- <span class="w-6 h-[3px] bg-dark-1 rounded-[2rem] block"></span> --}}
