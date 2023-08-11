@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'wp/buttons';
-@import 'wp/cover';
-@import 'styles/forms';
-@import 'styles/woo';
-@import 'styles/sliders';
+@import "wp/buttons";
+@import "wp/cover";
+@import "styles/forms";
+@import "styles/woo";
+@import "styles/sliders";
 
 svg {
   fill: currentColor;
@@ -28,6 +28,10 @@ svg {
 html,
 .editor-styles-wrapper {
   font-family: Cabin;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -120,7 +124,7 @@ select {
   .wp-block-heading {
     margin-top: 0;
   }
-  [data-af-component='library.components.Button'] button {
+  [data-af-component="library.components.Button"] button {
     display: block;
     margin: auto;
   }

@@ -1,30 +1,30 @@
-import { ReactNode, useEffect, useState } from 'react'
-import Collapsible from '../Collapsible'
-import useWindowSize from '../../util/hooks/useWindowSize'
-import scrollIntoViewWithOffset from '../../util/scroll-into-view-offset'
+import { ReactNode, useEffect, useState } from "react";
+import Collapsible from "../Collapsible";
+import useWindowSize from "../../util/hooks/useWindowSize";
+import scrollIntoViewWithOffset from "../../util/scroll-into-view-offset";
 
 interface MenuItem {
-  url?: string
-  onClick?: () => void
-  title: ReactNode
+  url?: string;
+  onClick?: () => void;
+  title: ReactNode;
 }
 
 interface MenuBodyProps {
-  items: MenuItem[]
+  items: MenuItem[];
 }
 
 const MenuBody = ({ items }: MenuBodyProps) => (
   <nav>
-    <ul className="list-none !my-0 flex flex-col lg:flex-row items-end lg:items-center justify-end gap-4 lg:gap-8 pt-6 lg:pt-0">
+    <ul className="list-none !my-0 flex flex-col lg:flex-row dark:text-white items-end lg:items-center justify-end gap-4 lg:gap-8 pt-6 lg:pt-0">
       {items.map((item, i) => (
         <li key={i} className="!pl-0 !my-0">
           <a
             onClick={(e) => {
               if (!item.onClick) {
-                return
+                return;
               }
-              e.preventDefault()
-              item.onClick()
+              e.preventDefault();
+              item.onClick();
             }}
             href={item.url}
           >
@@ -34,47 +34,47 @@ const MenuBody = ({ items }: MenuBodyProps) => (
       ))}
     </ul>
   </nav>
-)
+);
 
 interface HeaderMenuProps {
-  items: MenuItem[]
+  items: MenuItem[];
 }
 
 const HeaderMenu = ({ items: initialItems }: HeaderMenuProps) => {
   const getHeight = () =>
-    ['#wpadminbar', 'header']
+    ["#wpadminbar", "header"]
       .map((selector) => document.querySelector(selector))
       .filter(Boolean)
       .map((element) => element?.clientHeight ?? 0)
-      .reduce((acc, curr) => acc + curr, 0)
+      .reduce((acc, curr) => acc + curr, 0);
 
   const itemsToPrepend: MenuItem[] = Array.from(
-    document.querySelectorAll('.is-style-anchor')
+    document.querySelectorAll(".is-style-anchor")
   ).map((item) => ({
     title: item.innerHTML,
     onClick: () => scrollIntoViewWithOffset(item, getHeight() + 16),
-  }))
+  }));
 
   useEffect(() => {
-    Array.from(document.querySelectorAll('.is-style-anchor')).map((anchor) => {
+    Array.from(document.querySelectorAll(".is-style-anchor")).map((anchor) => {
       Array.from(
         document.querySelectorAll(`a[href="${anchor.innerHTML}"]`)
       ).forEach((item) =>
-        item.addEventListener('click', (e) => {
-          e.preventDefault()
-          e.stopPropagation()
-          scrollIntoViewWithOffset(anchor, getHeight() + 16)
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          scrollIntoViewWithOffset(anchor, getHeight() + 16);
         })
-      )
-    })
-  }, [])
+      );
+    });
+  }, []);
 
-  const itemsToAppend: MenuItem[] = []
+  const itemsToAppend: MenuItem[] = [];
 
-  const items = [...itemsToPrepend, ...initialItems, ...itemsToAppend]
+  const items = [...itemsToPrepend, ...initialItems, ...itemsToAppend];
 
-  const windowSize = useWindowSize()
-  const mobile = (windowSize.width ?? 0) < 1024
+  const windowSize = useWindowSize();
+  const mobile = (windowSize.width ?? 0) < 1024;
 
   return (
     <>
@@ -88,7 +88,7 @@ const HeaderMenu = ({ items: initialItems }: HeaderMenuProps) => {
         )}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default HeaderMenu
+export default HeaderMenu;
