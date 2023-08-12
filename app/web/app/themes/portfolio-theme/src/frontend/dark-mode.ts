@@ -15,4 +15,10 @@ window.addEventListener("DOMContentLoaded", () => {
   setClass(getHtml(), "dark", darkMode);
 });
 
+export const toggleDarkMode = () =>
+  localStorage.setItem(
+    "darkMode",
+    JSON.stringify(toggleClass(document.body.parentElement!, "dark"))
+  );
+
 export {};

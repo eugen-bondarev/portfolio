@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunkportfolio_theme=globalThis.webpackChunkportfolio_theme||[]).push([[95],{4358:(e,l,t)=>{t.r(l),t.d(l,{default:()=>o});var a=t(9307);const o=e=>{let{footerItems:l,headerItems:t}=e;return(0,a.createElement)("div",null,(0,a.createElement)("nav",{className:"flex flex-col lg:flex-row gap-4 lg:gap-40"}))}}}]);

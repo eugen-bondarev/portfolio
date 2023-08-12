@@ -9,8 +9,8 @@
                     <div id="hamburger-menu" class="w-12 h-12 flex items-center justify-center">
                         <div class="flex lg:hidden flex-col items-end gap-[6px]">
                             {{-- <span class="w-6 h-[3px] bg-dark-1 rounded-[2rem] block"></span> --}}
-                            <span class="w-7 h-[3px] bg-dark-1 rounded-[2rem] block"></span>
-                            <span class="w-6 h-[3px] bg-dark-1 rounded-[2rem] block"></span>
+                            <span class="w-7 h-[3px] bg-dark-1 dark:bg-light-1 rounded-[2rem] block"></span>
+                            <span class="w-6 h-[3px] bg-dark-1 dark:bg-light-1 rounded-[2rem] block"></span>
                         </div>
                     </div>
                 </div>
