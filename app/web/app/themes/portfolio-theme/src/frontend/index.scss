@@ -145,10 +145,12 @@ figure {
 }
 
 figure {
-  img,
-  video {
-    border-radius: 10px;
-    @apply shadow-sm;
+  &:not(.no-shadow) {
+    img,
+    video {
+      border-radius: 10px;
+      @apply shadow-sm;
+    }
   }
 }
 
