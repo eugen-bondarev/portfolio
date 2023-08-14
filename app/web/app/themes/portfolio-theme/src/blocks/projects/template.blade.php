@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-[64px] md:gap-[128px] pt-5 md:pt-10 mb-20">
     @foreach ($projects as $project)
-        <div class="flex justify-between max-md:flex-wrap-reverse gap-8">
+        <div class="flex justify-between max-md:flex-wrap-reverse items-center gap-8">
             <div class="flex flex-col gap-3">
                 <h2 class="!my-0">
                     <a class="font-bold" href="{{ $project->url }}">
