@@ -17,11 +17,13 @@
                 <p class="!my-0">
                     {{ $project->excerpt }}
                 </p>
-                <div>
-                    <a href="{{ $project->github_link }}" target="_blank">
-                        @svg('assets/svg/github.svg')
-                    </a>
-                </div>
+                @if ($project->github_link)
+                    <div>
+                        <a href="{{ $project->github_link }}" target="_blank">
+                            @svg('assets/svg/github.svg')
+                        </a>
+                    </div>
+                @endif
             </div>
             @if ($project->video)
                 <video class="w-[400px] max-md:w-full" autoplay loop muted>
