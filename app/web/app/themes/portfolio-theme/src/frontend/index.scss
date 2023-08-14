@@ -149,8 +149,19 @@ figure {
     img,
     video {
       border-radius: 10px;
-      @apply shadow-sm;
     }
+  }
+}
+
+.hide-on-mobile {
+  @media screen and (max-width: 784px) {
+    display: none !important;
+  }
+}
+
+.reverse-on-mobile {
+  @media screen and (max-width: 782px) {
+    @apply flex-col-reverse;
   }
 }
 
