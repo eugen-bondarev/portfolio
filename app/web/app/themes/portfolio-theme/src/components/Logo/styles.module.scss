@@ -16,12 +16,6 @@
   }
 }
 
-.hide-on-mobile {
-  @media screen and (max-width: 600px) {
-    display: none !important;
-  }
-}
-
 .reverse {
   flex-wrap: wrap-reverse !important;
 }

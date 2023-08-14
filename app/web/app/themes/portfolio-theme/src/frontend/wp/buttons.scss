@@ -147,7 +147,7 @@ button.primary-btn {
   div,
   button {
     @apply rounded-full transition whitespace-nowrap;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.13);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
     text-decoration: none;
   }
   &:not(.is-style-outline):not(.is-style-light) {
