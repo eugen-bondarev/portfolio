@@ -6,6 +6,10 @@ $controller = function ($attributes, $content) {
 		'post_type' => 'project'
 	]);
 	$projects = collect($query->posts)
+		->sort(
+			fn (WP_Post $a, WP_Post $b) =>
+			get_post_meta($a->ID, 'custom_sort', true) - get_post_meta($b->ID, 'custom_sort', true)
+		)
 		->map(fn (WP_Post $post) => (object)[
 			'title' => $post->post_title,
 			'video' => get_post_meta($post->ID, 'featured_video', true),

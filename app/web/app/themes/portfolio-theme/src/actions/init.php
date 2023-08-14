@@ -38,6 +38,17 @@ add_action(
 			'side'
 		);
 		add_meta_box(
+			'custom_sort',
+			'Custom sort',
+			function ($post) {
+				wp_nonce_field(basename(__FILE__), 'custom_sort_nonce');
+				echo '<label for="featured_video">Custom sort</label>';
+				echo '<input type="text" id="custom_sort" name="custom_sort" value="' . get_post_meta($post->ID, 'custom_sort', true) . '" />';
+			},
+			'project',
+			'side'
+		);
+		add_meta_box(
 			'github_link',
 			'Github Link',
 			function ($post) {
@@ -92,6 +103,28 @@ add_action('save_post', function ($post_id) {
 
 	if (isset($_POST['featured_img'])) {
 		update_post_meta($post_id, 'featured_img', sanitize_text_field($_POST['featured_img']));
+	}
+});
+
+add_action('save_post', function ($post_id) {
+	if (!isset($_POST['custom_sort_nonce'])) {
+		return;
+	}
+
+	if (!wp_verify_nonce($_POST['custom_sort_nonce'], basename(__FILE__))) {
+		return;
+	}
+
+	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+		return;
+	}
+
+	if (!current_user_can('edit_post', $post_id)) {
+		return;
+	}
+
+	if (isset($_POST['custom_sort'])) {
+		update_post_meta($post_id, 'custom_sort', sanitize_text_field($_POST['custom_sort']));
 	}
 });
 

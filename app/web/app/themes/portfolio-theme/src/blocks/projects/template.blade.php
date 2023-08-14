@@ -8,7 +8,7 @@
                     </a>
                 </h2>
                 @if (count($project->categories) > 0)
-                    <div class="flex gap-2">
+                    <div class="flex gap-2 flex-wrap">
                         @foreach ($project->categories as $category)
                             <span class="bg-dark-2 rounded-sm p-2 text-light-1 leading-[1]">{{ $category }}</span>
                         @endforeach
