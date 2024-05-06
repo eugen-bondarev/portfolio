@@ -4,39 +4,44 @@ import { Icon } from "astro-icon";
 
 const features = [
   {
-    title: "Bring Your Own Framework",
+    title: "Listen to your business idea / problem",
     description:
-      "Build your site using React, Svelte, Vue, Preact, web components, or just plain ol' HTML + JavaScript.",
+      "In this step you're sharing the details of your project and I'm developing a plan of attack. We work out a list of milestones with precise descriptions, deadlines and prices",
     icon: "bx:bxs-briefcase",
   },
   {
-    title: "100% Static HTML, No JS",
+    title: "Pick a programming language for the backend",
     description:
-      "Astro renders your entire page to static HTML, removing all JavaScript from your final build by default.",
+      'I analyze what problem I\'m dealing with and select the most effective tool for the job. <a href="#">Here</a> you can see what languages I work with',
     icon: "bx:bxs-window-alt",
   },
   {
-    title: "On-Demand Components",
+    title:
+      "Pick a set of managed cloud tools, like databases, file storage etc, or deploy my own",
     description:
-      "Need some JS? Astro can automatically hydrate interactive components when they become visible on the page.  ",
+      "I identify the best tools for the job and optimize their usage to make sure you pay only for what you use",
     icon: "bx:bxs-data",
   },
   {
-    title: "Broad Integration",
+    title: "Spin up cloud infrastructure to host the application",
     description:
-      "Astro supports TypeScript, Scoped CSS, CSS Modules, Sass, Tailwind, Markdown, MDX, and any other npm packages.",
+      "I use Terraform and Kubernetes to create robust and reproducible infrastructure",
     icon: "bx:bxs-bot",
   },
   {
-    title: "SEO Enabled",
-    description:
-      "Automatic sitemaps, RSS feeds, pagination and collections take the pain out of SEO and syndication. It just works!",
+    title: "Set up CI/CD",
+    description: "Talk about why CI/CD is useful",
     icon: "bx:bxs-file-find",
   },
   {
-    title: "Community",
+    title: "Develop the backend and the frontend",
+    description: "Talk about how I develop it all professionally",
+    icon: "bx:bxs-user",
+  },
+  {
+    title: "Deliver milestones and new features according to the plan",
     description:
-      "Astro is an open source project powered by hundreds of contributors making thousands of individual contributions.",
+      "Talk about how the customer is able to see the changes live at any time and I always inform them",
     icon: "bx:bxs-user",
   },
 ];
@@ -44,7 +49,7 @@ const features = [
 
 <div class="mt-16 md:mt-0">
   <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
-    Everything you need to start a website
+    What my workflow looks like
   </h2>
   <p class="text-lg mt-4 text-slate-600">
     Astro comes batteries included. It takes the best parts of state-of-the-art
@@ -56,12 +61,15 @@ const features = [
   {
     features.map((item) => (
       <div class="flex gap-4 items-start">
-        <div class="mt-1 bg-black rounded-full  p-2 w-8 h-8 shrink-0">
+        <div class="mt-1 bg-indigo-600 rounded-full  p-2 w-8 h-8 shrink-0">
           <Icon class="text-white" name={item.icon} />
         </div>
         <div>
           <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
-          <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+          <p
+            class="text-slate-500 mt-2 leading-relaxed"
+            set:html={item.description}
+          />
         </div>
       </div>
     ))

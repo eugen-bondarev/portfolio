@@ -5,13 +5,27 @@ import Features from "@components/features.astro";
 import Hero from "@components/hero.astro";
 import Logos from "@components/logos.astro";
 import Layout from "@layouts/Layout.astro";
+import Services from "@components/services.astro";
+import Spacing from "@components/spacing.astro";
+import ContactSection from "@components/contact-section.astro";
+import WhyMeSection from "@components/why-me-section.astro";
+import ClientReviewsSection from "@components/client-reviews-section.astro";
 ---
 
 <Layout title="">
   <Container>
+    <Spacing />
     <Hero />
+    <Spacing />
     <Features />
-    <Logos />
-    <Cta />
+    <Spacing />
+    <Services />
+    <Spacing />
+    <ClientReviewsSection />
+    <Spacing />
+    <WhyMeSection />
+    <Spacing />
+    <ContactSection />
+    <Spacing />
   </Container>
 </Layout>

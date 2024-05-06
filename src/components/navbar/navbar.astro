@@ -3,97 +3,128 @@ import Container from "@components/container.astro";
 import Link from "@components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import {
+  getLangFromUrl,
+  getUrlSuffixByLang,
+  useTranslations,
+} from "i18n/utils";
 
-const menuitems = [
+const lang = getLangFromUrl(Astro.url);
+const urlSuffix = getUrlSuffixByLang(lang);
+const t = useTranslations(lang);
+
+interface MenuItem {
+  title: string;
+  path: string;
+  comingSoon?: boolean;
+}
+
+const menuitems: MenuItem[] = [
   {
-    title: "Features",
-    path: "#",
-    children: [
-      { title: "Action", path: "/" },
-      { title: "Another action", path: "#" },
-      { title: "Dropdown Submenu", path: "#" },
-      { title: "404 Page", path: "/404" },
-    ],
+    title: "Services",
+    path: "/#services",
   },
   {
-    title: "Pricing",
-    path: "/pricing",
+    title: "Reviews",
+    path: "/#services",
   },
   {
-    title: "About",
-    path: "/about",
+    title: t("nav.about"),
+    path: `${urlSuffix}/about`,
   },
-  {
-    title: "Blog",
-    path: "/blog",
-  },
+  // {
+  //   title: "Blog",
+  //   path: "/blog",
+  //   comingSoon: true,
+  // },
   {
     title: "Contact",
     path: "/contact",
   },
-  {
-    title: "Pro Version",
-    badge: true,
-    path: "https://astroship-pro.web3templates.com/",
-  },
 ];
 ---
 
-<Container>
-  <header class="flex flex-col lg:flex-row justify-between items-center my-5">
-    <Astronav>
-      <div class="flex w-full lg:w-auto items-center justify-between">
-        <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-800">Astro</span><span
-            class="text-slate-500">ship</span
-          >
-        </a>
-        <div class="block lg:hidden">
-          <MenuIcon class="w-4 h-4 text-gray-800" />
+<div
+  class="header-container sticky top-0 bg-white/80 z-[99999] border-gray-200 data-[active]:border-b backdrop-blur-lg transition-all">
+  <header
+    class="flex flex-col lg:flex-row justify-between items-center mt-5 py-2">
+    <Container class="flex justify-between w-full">
+      <Astronav>
+        <div class="flex w-full lg:w-auto items-center justify-between">
+          <a href="/" class="text-lg"
+            ><span class="font-bold text-slate-800">Eugen</span><span
+              class="text-slate-500">
+              Bondarev</span
+            >
+          </a>
+          <div class="block lg:hidden">
+            <MenuIcon class="w-4 h-4 text-gray-800" />
+          </div>
         </div>
-      </div>
-      <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
-        <ul class="flex flex-col lg:flex-row lg:gap-3">
-          {
-            menuitems.map((item, index) => (
-              <>
-                {item.children && (
+        <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
+          <ul class="flex flex-col lg:flex-row lg:gap-6">
+            {
+              menuitems.map((item, index) => (
+                <>
+                  {/* {item.children && (
                   <Dropdown
                     title={item.title}
                     children={item.children}
                     lastItem={index === menuitems.length - 1}
                   />
-                )}
+                )} */}
 
-                {!item.children && (
-                  <li>
+                  {/* {!item.children && ( */}
+                  <li class="relative">
                     <a
                       href={item.path}
-                      class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
+                      class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900"
+                      class:list={{
+                        "pointer-events-none": item.comingSoon,
+                      }}>
                       <span> {item.title}</span>
-                      {item.badge && (
-                        <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
-                          New
+                      {item.comingSoon ? (
+                        <span class="absolute text-xs py-[2px] px-[4px] bottom-[-11px] -right-12 flex w-fit text-nowrap bg-indigo-500 text-white rounded-full z-10">
+                          Coming soon
                         </span>
-                      )}
+                      ) : null}
                     </a>
                   </li>
-                )}
-              </>
-            ))
-          }
-        </ul>
-        <div class="lg:hidden flex items-center mt-3 gap-4">
-          <Link href="#" style="muted" block size="md">Log in</Link>
-          <Link href="#" size="md" block>Sign up</Link>
+                  {/* )} */}
+                </>
+              ))
+            }
+          </ul>
+          <div class="lg:hidden flex items-center mt-3 gap-4">
+            <!-- <Link href="#" style="muted" block size="md">Log in</Link> -->
+            <Link href="#" size="md" block>Get in touch</Link>
+          </div>
+        </MenuItems>
+      </Astronav>
+      <div>
+        <div class="hidden lg:flex items-center gap-4">
+          <!-- <a href="#">Log in</a> -->
+          <Link href="#" size="md">Get in touch</Link>
         </div>
-      </MenuItems>
-    </Astronav>
-    <div>
-      <div class="hidden lg:flex items-center gap-4">
-        <a href="#">Log in</a>
-        <Link href="#" size="md">Sign up</Link>
       </div>
-    </div>
+    </Container>
   </header>
-</Container>
+</div>
+
+<style>
+  .header-container {
+    /* border-bottom-width: 1px; */
+  }
+</style>
+
+<script>
+  const header = document.querySelector(".header-container");
+
+  document.addEventListener("scroll", (e) => {
+    if (window.scrollY < 50) {
+      header?.removeAttribute("data-active");
+    } else {
+      header?.setAttribute("data-active", "");
+    }
+  });
+</script>

@@ -1,0 +1,33 @@
+---
+import Contactform from "@components/contactform.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import { Icon } from "astro-icon";
+---
+
+<Container>
+  <Sectionhead>
+    <Fragment slot="title">Contact</Fragment>
+    <Fragment slot="desc">I am here to help.</Fragment>
+  </Sectionhead>
+
+  <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
+    <div>
+      <!-- <h2 class="font-medium text-2xl text-gray-800">Contact me</h2> -->
+      <p class="text-lg leading-relaxed text-slate-500 mt-3">
+        Have a project idea in mind? Want something to be fixed quickly? Let's
+        chat.
+      </p>
+      <div class="mt-5">
+        <div class="flex items-center mt-2 space-x-2 text-gray-600">
+          <Icon class="text-gray-400 w-4 h-4" name="uil:envelope" /><a
+            href="mailto:eug.bondarev@gmail.com">eug.bondarev@gmail.com</a
+          >
+        </div>
+      </div>
+    </div>
+    <div>
+      <Contactform />
+    </div>
+  </div>
+</Container>
