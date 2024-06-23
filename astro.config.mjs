@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'hybrid',
   site: "https://astroship.web3templates.com",
   integrations: [tailwind(), mdx(), sitemap()],
 });
