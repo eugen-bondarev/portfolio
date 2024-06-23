@@ -1,10 +1,12 @@
-export async function POST({ request }) {
+export async function GET({ request }) {
 	try {
 		const flowluApiKey = import.meta.env.FLOWLU_API_KEY
-		const requestBody = await request.json();
+
+		const url = new URL(request.url);
+
 		const details = {
-			name: requestBody.name,
-			description: requestBody.message,
+			name: url.searchParams.get('name'),
+			description: url.searchParams.get('message'),
 		}
 
 		const formBody: string[] = [];
@@ -26,7 +28,7 @@ export async function POST({ request }) {
 		const json = await r.json()
 
 		if (!json.response?.id) {
-			throw new Error('an error occurred')
+			throw new Error('an error occurred, ' + JSON.stringify(json))
 		}
 	} catch (e) {
 		return new Response(JSON.stringify({ msg: e.toString() }), {
