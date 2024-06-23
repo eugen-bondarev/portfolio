@@ -12,7 +12,7 @@ const features = [
   {
     title: "Pick a programming language for the backend",
     description:
-      'I analyze what problem I\'m dealing with and select the most effective tool for the job. <a href="#">Here</a> you can see what languages I work with',
+      'I analyze what problem I\'m dealing with and select the most effective tool for the job. <a href="#tech-stack">Here</a> you can see what languages I work with',
     icon: "bx:bxs-window-alt",
   },
   {
@@ -25,24 +25,24 @@ const features = [
   {
     title: "Spin up cloud infrastructure to host the application",
     description:
-      "I use Terraform and Kubernetes to create robust and reproducible infrastructure",
-    icon: "bx:bxs-bot",
+      "I use Terraform and Kubernetes to create robust, reproducible and scalable infrastructure",
+    icon: "ic:round-cloud",
   },
   {
     title: "Set up CI/CD",
-    description: "Talk about why CI/CD is useful",
-    icon: "bx:bxs-file-find",
+    description: "I set up automated deployment and testing pipelines to ensure continuous delivery with zero bugs and downtime",
+    icon: "eos-icons:pipeline",
   },
   {
     title: "Develop the backend and the frontend",
-    description: "Talk about how I develop it all professionally",
-    icon: "bx:bxs-user",
+    description: "The entire development is done solely by me. I constatly think about the best practices and keep your business requirements in mind",
+    icon: "fluent:window-dev-tools-24-filled",
   },
   {
     title: "Deliver milestones and new features according to the plan",
     description:
-      "Talk about how the customer is able to see the changes live at any time and I always inform them",
-    icon: "bx:bxs-user",
+      "You're always able to see the current status of the project and give your feedback",
+    icon: "eos-icons:project",
   },
 ];
 ---
@@ -52,8 +52,7 @@ const features = [
     What my workflow looks like
   </h2>
   <p class="text-lg mt-4 text-slate-600">
-    Astro comes batteries included. It takes the best parts of state-of-the-art
-    tools and adds its own innovations.
+    Every single step is optimized to the fullest so I can provide as much value as quickly as possible.
   </p>
 </div>
 
@@ -68,7 +67,7 @@ const features = [
           <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
           <p
             class="text-slate-500 mt-2 leading-relaxed"
-            set:html={item.description}
+            set:html={`${item.description}.`}
           />
         </div>
       </div>
