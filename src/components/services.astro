@@ -1,3 +1,13 @@
+---
+import { Picture } from "astro:assets";
+import p1 from "assets/1.jpg";
+import p2 from "assets/2.avif";
+import p3 from "assets/3.png";
+import p4 from "assets/4.png";
+import p5 from "assets/5.avif";
+import p6 from "assets/6.svg";
+
+---
 <div class="mt-24 text-center">
   <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">My services</h2>
   <p class="text-lg mt-4 text-slate-600">
@@ -13,24 +23,12 @@
       <div
         class="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent z-10">
       </div>
-      <picture>
-        <source
-          srcset="https://astroship-pro.web3templates.com/_astro/2.ldT67BXv_ZIfUrc.avif"
-          type="image/avif"
-        /><source
-          srcset="https://astroship-pro.web3templates.com/_astro/2.ldT67BXv_Z1VcUNt.webp"
-          type="image/webp"
-        />
-        <img
-          src="https://astroship-pro.web3templates.com/_astro/2.ldT67BXv_ZgktxF.png"
-          alt="Feature image"
-          class="h-full w-full object-contain"
-          loading="lazy"
-          width="1280"
-          height="800"
-          decoding="async"
-        />
-      </picture>
+      <Picture
+        src={p5}
+        alt="SaaS"
+        widths={[600, 800, 1200]}
+        loading="lazy"
+      />
     </div>
     <div class="mt-2">
       <div class="flex gap-2 flex-wrap">
@@ -68,24 +66,12 @@
       <div
         class="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent z-10">
       </div>
-      <picture>
-        <!-- <source -->
-        <!--   srcset="https://astroship-pro.web3templates.com/_astro/2.ldT67BXv_ZIfUrc.avif" -->
-        <!--   type="image/avif" -->
-        <!-- /><source -->
-        <!--   srcset="https://astroship-pro.web3templates.com/_astro/2.ldT67BXv_Z1VcUNt.webp" -->
-        <!--   type="image/webp" -->
-        <!-- /> -->
-        <img
-          src="/src/assets/2.avif"
-          alt="Feature image"
-          class="h-full w-full object-contain"
-          loading="lazy"
-          width="1280"
-          height="800"
-          decoding="async"
-        />
-      </picture>
+      <Picture
+        src={p2}
+        alt="Backend devlopment"
+        widths={[600, 800, 1200]}
+        loading="lazy"
+      />
     </div>
     <div class="mt-2">
       <div class="flex gap-2 flex-wrap">
@@ -118,14 +104,11 @@
       <div
         class="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent z-10">
       </div>
-      <img
-        src="https://astroship-pro.web3templates.com/_astro/integrations.HhfHOMQB.svg"
-        alt="Feature image"
-        class="h-full w-full object-contain"
+      <Picture
+        src={p6}
+        alt="API integrations"
+        widths={[600, 800, 1200]}
         loading="lazy"
-        width="909"
-        height="823"
-        decoding="async"
       />
     </div>
     <div class="mt-2">
@@ -156,17 +139,12 @@
       <div
         class="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent z-10">
       </div>
-      <picture>
-        <img
-          src="/src/assets/1.jpg"
-          alt="Feature image"
-          class="h-full w-full object-contain"
-          loading="lazy"
-          width="1280"
-          height="800"
-          decoding="async"
-        />
-      </picture>
+      <Picture
+        src={p1}
+        alt="Website development (e-commerce, landing page, blog)"
+        widths={[600, 800, 1200]}
+        loading="lazy"
+      />
     </div>
     <div class="mt-2">
       <div class="flex gap-2 flex-wrap">
@@ -206,24 +184,12 @@
       <div
         class="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent z-10">
       </div>
-      <picture>
-        <!-- <source -->
-        <!--   srcset="https://astroship-pro.web3templates.com/_astro/2.ldT67BXv_ZIfUrc.avif" -->
-        <!--   type="image/avif" -->
-        <!-- /><source -->
-        <!--   srcset="https://astroship-pro.web3templates.com/_astro/2.ldT67BXv_Z1VcUNt.webp" -->
-        <!--   type="image/webp" -->
-        <!-- /> -->
-        <img
-          src="/src/assets/3.png"
-          alt="Feature image"
-          class="h-full w-full object-contain"
-          loading="lazy"
-          width="1280"
-          height="800"
-          decoding="async"
-        />
-      </picture>
+      <Picture
+        src={p3}
+        alt="Infrastructure & DevOps development"
+        widths={[600, 800, 1200]}
+        loading="lazy"
+      />
     </div>
     <div class="mt-2">
       <div class="flex gap-2 flex-wrap">
@@ -252,24 +218,12 @@
       <div
         class="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent z-10">
       </div>
-      <picture>
-        <!-- <source -->
-        <!--   srcset="https://astroship-pro.web3templates.com/_astro/2.ldT67BXv_ZIfUrc.avif" -->
-        <!--   type="image/avif" -->
-        <!-- /><source -->
-        <!--   srcset="https://astroship-pro.web3templates.com/_astro/2.ldT67BXv_Z1VcUNt.webp" -->
-        <!--   type="image/webp" -->
-        <!-- /> -->
-        <img
-          src="/src/assets/4.png"
-          alt="Feature image"
-          class="h-full w-full object-contain"
-          loading="lazy"
-          width="1280"
-          height="800"
-          decoding="async"
-        />
-      </picture>
+      <Picture
+        src={p4}
+        alt="Custom WordPress themes & plugins"
+        widths={[600, 800, 1200]}
+        loading="lazy"
+      />
     </div>
     <div class="mt-2">
       <div class="flex gap-2 flex-wrap">

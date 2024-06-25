@@ -26,11 +26,15 @@ const menuitems: MenuItem[] = [
   },
   {
     title: "Reviews",
-    path: "/#services",
+    path: "/#reviews",
   },
+  // {
+  //   title: t("nav.about"),
+  //   path: `${urlSuffix}/about`,
+  // },
   {
-    title: t("nav.about"),
-    path: `${urlSuffix}/about`,
+    title: 'Why me',
+    path: `${urlSuffix}/#why-me`,
   },
   {
     title: t("nav.tech-stack"),
@@ -41,18 +45,36 @@ const menuitems: MenuItem[] = [
   //   path: "/blog",
   //   comingSoon: true,
   // },
-  {
-    title: "Contact",
-    path: "/contact",
-  },
+  // {
+  //   title: "Contact",
+  //   path: "/contact",
+  // },
 ];
+
+
 ---
 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('scroll', (e) => {
+    const btn = document.querySelector('header #contact-btn')
+    if (!btn) {
+      return
+    }
+    if (window.scrollY > 1000) {
+      btn.classList.remove('opacity-0')
+    } else {
+      btn.classList.add('opacity-0')
+    }
+    // console.log( window.scrollY, btn )
+  });
+});
+</script>
 <div
   class="header-container sticky top-0 bg-white/80 z-[99999] border-gray-200 data-[active]:border-b backdrop-blur-lg transition-all">
   <header
     class="flex flex-col lg:flex-row justify-between items-center mt-5 py-2">
-    <Container class="flex justify-between w-full">
+    <Container class="flex max-md:flex-col justify-between w-full">
       <Astronav>
         <div class="flex w-full lg:w-auto items-center justify-between">
           <a href="/" class="text-lg"
@@ -65,20 +87,11 @@ const menuitems: MenuItem[] = [
             <MenuIcon class="w-4 h-4 text-gray-800" />
           </div>
         </div>
-        <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
+        <MenuItems class="hidden w-full flex flex-col flex-wrap lg:w-auto mt-2 lg:flex lg:mt-0">
           <ul class="flex flex-col lg:flex-row lg:gap-6">
             {
               menuitems.map((item, index) => (
                 <>
-                  {/* {item.children && (
-                  <Dropdown
-                    title={item.title}
-                    children={item.children}
-                    lastItem={index === menuitems.length - 1}
-                  />
-                )} */}
-
-                  {/* {!item.children && ( */}
                   <li class="relative">
                     <a
                       href={item.path}
@@ -87,28 +100,22 @@ const menuitems: MenuItem[] = [
                         "pointer-events-none": item.comingSoon,
                       }}>
                       <span> {item.title}</span>
-                      {item.comingSoon ? (
-                        <span class="absolute text-xs py-[2px] px-[4px] bottom-[-11px] -right-12 flex w-fit text-nowrap bg-indigo-500 text-white rounded-full z-10">
-                          Coming soon
-                        </span>
-                      ) : null}
                     </a>
                   </li>
-                  {/* )} */}
                 </>
               ))
             }
           </ul>
           <div class="lg:hidden flex items-center mt-3 gap-4">
             <!-- <Link href="#" style="muted" block size="md">Log in</Link> -->
-            <Link href="#" size="md" block>Get in touch</Link>
+            <Link href="mailto:eug.bondarev@gmail.com" size="md" block>Get in touch</Link>
           </div>
         </MenuItems>
       </Astronav>
       <div>
         <div class="hidden lg:flex items-center gap-4">
           <!-- <a href="#">Log in</a> -->
-          <Link href="#" size="md">Get in touch</Link>
+          <Link id="contact-btn" class="opacity-0 transition" href="mailto:eug.bondarev@gmail.com" size="md">Get in touch</Link>
         </div>
       </div>
     </Container>

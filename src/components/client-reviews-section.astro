@@ -1,3 +1,47 @@
+---
+interface Review {
+  content: string
+  person: {
+    name: string
+    position: string
+    avatarUrl: string
+  }
+}
+const reviews: Review[] = [
+  {
+    content: 'I highly recommend Eugen to anyone seeking a talented and reliable developer. His expertise, commitment to quality, and collaborative approach make him an invaluable asset. I look forward to future opportunities to work together.',
+    person: {
+      name: 'Filip Lukić',
+      position: 'Co-Founder of ahead&',
+      avatarUrl: 'https://media.licdn.com/dms/image/D4E03AQHp5PmAqmgW0w/profile-displayphoto-shrink_200_200/0/1680120619447?e=1724889600&v=beta&t=GVU8IhpYxI489Yomt1kCj-aqGwvUTl7LRtuDiJuYi9w',
+    }
+  },
+  {
+    content: 'Very highly-skilled full stack developer. I\'m certainly looking forward to working with you again!',
+    person: {
+      name: 'Jaynesh Vekaria',
+      position: 'Founder of MOONBEAR LTD',
+      avatarUrl: 'https://media.licdn.com/dms/image/C5603AQH0V1d37UySNw/profile-displayphoto-shrink_100_100/0/1564477552968?e=1724889600&v=beta&t=ceQ-ngPMBne0_t9i5bTG6VUCtAc0kt0cE3meHRG9ddI',
+    }
+  },
+  {
+    content: 'Eugen delivered exceptional results in building the core of our Wordpress Theme and developing a plugin for our WooCommerce checkout flow. His communication skills were outstanding, keeping us informed at every stage of the project. We are thoroughly satisfied and will definitely consider working with Eugen again in the future.',
+    person: {
+      name: 'Michael Wechsler',
+      position: 'Product Manager at MEINE ERDE',
+      avatarUrl: 'https://media.licdn.com/dms/image/D5603AQEUe4QOTjoIpg/profile-displayphoto-shrink_100_100/0/1718912414079?e=1724889600&v=beta&t=WVIi5c9Ig76abDbCYwdhQqiMsx9AdHbVw_60b0vu0Ms',
+    }
+  },
+  {
+    content: 'Eugen was amazing and helped me to build a WordPress Plugin for my SaaS in almost no time and without real guidance from my side!',
+    person: {
+      name: 'Marc Zwiebler',
+      position: 'Founder of KURABU',
+      avatarUrl: 'https://media.licdn.com/dms/image/D4D03AQEtd8q5CvDbmg/profile-displayphoto-shrink_100_100/0/1642691242252?e=1724889600&v=beta&t=65hMwL59CNZ0PInYP7hgy98BYTR5T3aIIMklXFFzims',
+    }
+  },
+]
+---
 <div class="max-w-screen-xl mx-auto px-5">
   <div class="mt-24">
     <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight text-center">
@@ -8,428 +52,136 @@
     </p>
   </div>
 </div>
-<div class="mt-10 relative overflow-x-clip">
-  <div
-    class="absolute w-96 h-96 blur-2xl -z-10 bg-gradient-radial from-indigo-100 right-1/3 -top-10">
-  </div>
+<div class="max-w-screen-xl overflow-x-hidden mx-auto mt-10 relative">
   <div
     class="absolute w-96 h-96 blur-2xl -z-10 bg-gradient-radial from-purple-100 right-1/3 translate-x-2/3 top-10">
   </div>
-  <div class="relative md:flex gap-10 overflow-hidden py-5 group">
     <div
-      class="md:motion-safe:animate-marquee w-auto py-5 overflow-x-auto flex flex-nowrap min-w-full shrink-0 items-stretch gap-10 snap-x snap-mandatory px-5">
-      <div
-        class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
-        <blockquote class="text-lg md:text-xl [text-wrap:balance]">
-          Astroship has transformed the way we manage our projects. Its
-          well-designed interface and powerful features make it a must-have tool
-          for any startup. We've seen a great increase in our productivity and
-          collaboration.
-        </blockquote>
-        <div class="flex items-center gap-3 mt-10">
-          <div class="shrink-0">
-            <picture>
-              <img
-                src="https://media.licdn.com/dms/image/C4E03AQHeRKH-rAcNfw/profile-displayphoto-shrink_200_200/0/1643207741275?e=1724284800&v=beta&t=5zzeFzmwAK8pKY56qF5TknywsbgjAGyET2h5jyoLd5Q"
-                class="rounded-full w-12 h-12 object-cover bg-slate-100"
-                alt="John Doe"
-                loading="lazy"
-                width="48"
-                height="48"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div>
-            <h2 class="font-medium text-slate-800">John Doe</h2>
-            <p class="text-sm text-slate-600">CEO at TechCorp</p>
-          </div>
+      class="md:motion-safe:animate-marquee w-auto py-5 overflow-x-auto flex flex-wrap justify-center min-w-full shrink-0 items-stretch gap-10 snap-x snap-mandatory px-5">
+    { reviews.map( (review, i) => <div
+      class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
+      <blockquote class="text-lg md:text-xl [text-wrap:balance]">
+        {review.content}
+      </blockquote>
+      <div class="flex items-center gap-3 mt-10">
+        <div class="shrink-0">
+          <picture>
+            <img
+              src={review.person.avatarUrl}
+              class="rounded-full w-12 h-12 object-cover bg-slate-100"
+              alt={review.person.name}
+              loading="lazy"
+              width="48"
+              height="48"
+              decoding="async"
+            />
+          </picture>
         </div>
-      </div><div
-        class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
-        <blockquote class="text-lg md:text-xl [text-wrap:balance]">
-          As a marketing professional, I love using Astroship to streamline our
-          marketing campaigns. The automation features and data analytics help
-          us make data-driven decisions and optimize our business strategies.
-        </blockquote>
-        <div class="flex items-center gap-3 mt-10">
-          <div class="shrink-0">
-            <picture>
-              <source
-                srcset="https://astroship-pro.web3templates.com/_astro/jzz_3jWMzHA_Z1jn4Td.avif"
-                type="image/avif"
-              /><source
-                srcset="https://astroship-pro.web3templates.com/_astro/jzz_3jWMzHA_Z1aB3D3.webp"
-                type="image/webp"
-              />
-              <img
-                src="https://astroship-pro.web3templates.com/_astro/jzz_3jWMzHA_xGKp6.png"
-                class="rounded-full w-12 h-12 object-cover bg-slate-100"
-                alt="Jane Smith"
-                loading="lazy"
-                width="48"
-                height="48"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div>
-            <h2 class="font-medium text-slate-800">Jane Smith</h2>
-            <p class="text-sm text-slate-600">
-              Marketing Manager at InnovateTech
-            </p>
-          </div>
-        </div>
-      </div><div
-        class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
-        <blockquote class="text-lg md:text-xl [text-wrap:balance]">
-          Astroship has revolutionized the way we handle customer support. The
-          ticketing system and knowledge base have significantly reduced
-          response times, leading to happier customers. Thanks to this
-          incredible tool.
-        </blockquote>
-        <div class="flex items-center gap-3 mt-10">
-          <div class="shrink-0">
-            <picture>
-              <source
-                srcset="https://astroship-pro.web3templates.com/_astro/MZf0mI14RI0_Z1loJUC.avif"
-                type="image/avif"
-              /><source
-                srcset="https://astroship-pro.web3templates.com/_astro/MZf0mI14RI0_Z1cCIEs.webp"
-                type="image/webp"
-              />
-              <img
-                src="https://astroship-pro.web3templates.com/_astro/MZf0mI14RI0_vF5nG.png"
-                class="rounded-full w-12 h-12 object-cover bg-slate-100"
-                alt="Mike Johnson"
-                loading="lazy"
-                width="48"
-                height="48"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div>
-            <h2 class="font-medium text-slate-800">Mike Johnson</h2>
-            <p class="text-sm text-slate-600">CTO at CloudNine</p>
-          </div>
-        </div>
-      </div><div
-        class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
-        <blockquote class="text-lg md:text-xl [text-wrap:balance]">
-          Astroship has simplified our employee management processes. From
-          onboarding to performance evaluations, everything is now seamlessly
-          organized in one place. It's made my job much more manageable and
-          enjoyable!
-        </blockquote>
-        <div class="flex items-center gap-3 mt-10">
-          <div class="shrink-0">
-            <picture>
-              <source
-                srcset="https://astroship-pro.web3templates.com/_astro/2EdIX-O2lkI_Z1pQMxv.avif"
-                type="image/avif"
-              /><source
-                srcset="https://astroship-pro.web3templates.com/_astro/2EdIX-O2lkI_Z1h5Lhl.webp"
-                type="image/webp"
-              />
-              <img
-                src="https://astroship-pro.web3templates.com/_astro/2EdIX-O2lkI_rd2KN.png"
-                class="rounded-full w-12 h-12 object-cover bg-slate-100"
-                alt="Emily Brown"
-                loading="lazy"
-                width="48"
-                height="48"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div>
-            <h2 class="font-medium text-slate-800">Emily Brown</h2>
-            <p class="text-sm text-slate-600">HR Manager at ConnectCo</p>
-          </div>
-        </div>
-      </div><div
-        class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
-        <blockquote class="text-lg md:text-xl [text-wrap:balance]">
-          Our sales team swears by Astroship's CRM capabilities. The lead
-          tracking and pipeline management tools have resulted in a significant
-          boost in sales. It's a versatile platform that has truly optimized our
-          sales processes.
-        </blockquote>
-        <div class="flex items-center gap-3 mt-10">
-          <div class="shrink-0">
-            <picture>
-              <source
-                srcset="https://astroship-pro.web3templates.com/_astro/QEgHL8NN7nM_Z1cDUqB.avif"
-                type="image/avif"
-              /><source
-                srcset="https://astroship-pro.web3templates.com/_astro/QEgHL8NN7nM_Z13RTar.webp"
-                type="image/webp"
-              />
-              <img
-                src="https://astroship-pro.web3templates.com/_astro/QEgHL8NN7nM_EpTRH.png"
-                class="rounded-full w-12 h-12 object-cover bg-slate-100"
-                alt="David Lee"
-                loading="lazy"
-                width="48"
-                height="48"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div>
-            <h2 class="font-medium text-slate-800">David Lee</h2>
-            <p class="text-sm text-slate-600">Sales Director at Linkify</p>
-          </div>
-        </div>
-      </div><div
-        class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
-        <blockquote class="text-lg md:text-xl [text-wrap:balance]">
-          Astroship has been a lifesaver for our finance department. Its robust
-          accounting features and automated invoicing have saved us countless
-          hours of manual work. It's the perfect financial companion for any
-          business!
-        </blockquote>
-        <div class="flex items-center gap-3 mt-10">
-          <div class="shrink-0">
-            <picture>
-              <source
-                srcset="https://astroship-pro.web3templates.com/_astro/6qf1uljGpU4_1wFayD.avif"
-                type="image/avif"
-              /><source
-                srcset="https://astroship-pro.web3templates.com/_astro/6qf1uljGpU4_1FrbON.webp"
-                type="image/webp"
-              />
-              <img
-                src="https://astroship-pro.web3templates.com/_astro/6qf1uljGpU4_Z1Fr7UY.png"
-                class="rounded-full w-12 h-12 object-cover bg-slate-100"
-                alt="Sarah Martinez"
-                loading="lazy"
-                width="48"
-                height="48"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div>
-            <h2 class="font-medium text-slate-800">Sarah Martinez</h2>
-            <p class="text-sm text-slate-600">
-              Finance Controller at MoneyMakers
-            </p>
-          </div>
+        <div>
+          <h2 class="font-medium text-slate-800">{review.person.name}</h2>
+          <p class="text-sm text-slate-600">{review.person.position}</p>
         </div>
       </div>
-    </div>
-    <div
-      class="md:motion-safe:animate-marquee hidden md:motion-reduce:hidden md:flex min-w-full shrink-0 items-center gap-10">
-      <div
-        class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
-        <blockquote class="text-lg md:text-xl [text-wrap:balance]">
-          Astroship has transformed the way we manage our projects. Its
-          well-designed interface and powerful features make it a must-have tool
-          for any startup. We've seen a great increase in our productivity and
-          collaboration.
-        </blockquote>
-        <div class="flex items-center gap-3 mt-10">
-          <div class="shrink-0">
-            <picture>
-              <source
-                srcset="https://astroship-pro.web3templates.com/_astro/fHXpgMd_XhE_Z23xjiv.avif"
-                type="image/avif"
-              /><source
-                srcset="https://astroship-pro.web3templates.com/_astro/fHXpgMd_XhE_Z1TLi2l.webp"
-                type="image/webp"
-              />
-              <img
-                src="https://astroship-pro.web3templates.com/_astro/fHXpgMd_XhE_ZbssYc.png"
-                class="rounded-full w-12 h-12 object-cover bg-slate-100"
-                alt="John Doe"
-                loading="lazy"
-                width="48"
-                height="48"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div>
-            <h2 class="font-medium text-slate-800">John Doe</h2>
-            <p class="text-sm text-slate-600">CEO at TechCorp</p>
-          </div>
-        </div>
-      </div><div
-        class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
-        <blockquote class="text-lg md:text-xl [text-wrap:balance]">
-          As a marketing professional, I love using Astroship to streamline our
-          marketing campaigns. The automation features and data analytics help
-          us make data-driven decisions and optimize our business strategies.
-        </blockquote>
-        <div class="flex items-center gap-3 mt-10">
-          <div class="shrink-0">
-            <picture>
-              <source
-                srcset="https://astroship-pro.web3templates.com/_astro/jzz_3jWMzHA_Z1jn4Td.avif"
-                type="image/avif"
-              /><source
-                srcset="https://astroship-pro.web3templates.com/_astro/jzz_3jWMzHA_Z1aB3D3.webp"
-                type="image/webp"
-              />
-              <img
-                src="https://astroship-pro.web3templates.com/_astro/jzz_3jWMzHA_xGKp6.png"
-                class="rounded-full w-12 h-12 object-cover bg-slate-100"
-                alt="Jane Smith"
-                loading="lazy"
-                width="48"
-                height="48"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div>
-            <h2 class="font-medium text-slate-800">Jane Smith</h2>
-            <p class="text-sm text-slate-600">
-              Marketing Manager at InnovateTech
-            </p>
-          </div>
-        </div>
-      </div><div
-        class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
-        <blockquote class="text-lg md:text-xl [text-wrap:balance]">
-          Astroship has revolutionized the way we handle customer support. The
-          ticketing system and knowledge base have significantly reduced
-          response times, leading to happier customers. Thanks to this
-          incredible tool.
-        </blockquote>
-        <div class="flex items-center gap-3 mt-10">
-          <div class="shrink-0">
-            <picture>
-              <source
-                srcset="https://astroship-pro.web3templates.com/_astro/MZf0mI14RI0_Z1loJUC.avif"
-                type="image/avif"
-              /><source
-                srcset="https://astroship-pro.web3templates.com/_astro/MZf0mI14RI0_Z1cCIEs.webp"
-                type="image/webp"
-              />
-              <img
-                src="https://astroship-pro.web3templates.com/_astro/MZf0mI14RI0_vF5nG.png"
-                class="rounded-full w-12 h-12 object-cover bg-slate-100"
-                alt="Mike Johnson"
-                loading="lazy"
-                width="48"
-                height="48"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div>
-            <h2 class="font-medium text-slate-800">Mike Johnson</h2>
-            <p class="text-sm text-slate-600">CTO at CloudNine</p>
-          </div>
-        </div>
-      </div><div
-        class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
-        <blockquote class="text-lg md:text-xl [text-wrap:balance]">
-          Astroship has simplified our employee management processes. From
-          onboarding to performance evaluations, everything is now seamlessly
-          organized in one place. It's made my job much more manageable and
-          enjoyable!
-        </blockquote>
-        <div class="flex items-center gap-3 mt-10">
-          <div class="shrink-0">
-            <picture>
-              <source
-                srcset="https://astroship-pro.web3templates.com/_astro/2EdIX-O2lkI_Z1pQMxv.avif"
-                type="image/avif"
-              /><source
-                srcset="https://astroship-pro.web3templates.com/_astro/2EdIX-O2lkI_Z1h5Lhl.webp"
-                type="image/webp"
-              />
-              <img
-                src="https://astroship-pro.web3templates.com/_astro/2EdIX-O2lkI_rd2KN.png"
-                class="rounded-full w-12 h-12 object-cover bg-slate-100"
-                alt="Emily Brown"
-                loading="lazy"
-                width="48"
-                height="48"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div>
-            <h2 class="font-medium text-slate-800">Emily Brown</h2>
-            <p class="text-sm text-slate-600">HR Manager at ConnectCo</p>
-          </div>
-        </div>
-      </div><div
-        class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
-        <blockquote class="text-lg md:text-xl [text-wrap:balance]">
-          Our sales team swears by Astroship's CRM capabilities. The lead
-          tracking and pipeline management tools have resulted in a significant
-          boost in sales. It's a versatile platform that has truly optimized our
-          sales processes.
-        </blockquote>
-        <div class="flex items-center gap-3 mt-10">
-          <div class="shrink-0">
-            <picture>
-              <source
-                srcset="https://astroship-pro.web3templates.com/_astro/QEgHL8NN7nM_Z1cDUqB.avif"
-                type="image/avif"
-              /><source
-                srcset="https://astroship-pro.web3templates.com/_astro/QEgHL8NN7nM_Z13RTar.webp"
-                type="image/webp"
-              />
-              <img
-                src="https://astroship-pro.web3templates.com/_astro/QEgHL8NN7nM_EpTRH.png"
-                class="rounded-full w-12 h-12 object-cover bg-slate-100"
-                alt="David Lee"
-                loading="lazy"
-                width="48"
-                height="48"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div>
-            <h2 class="font-medium text-slate-800">David Lee</h2>
-            <p class="text-sm text-slate-600">Sales Director at Linkify</p>
-          </div>
-        </div>
-      </div><div
-        class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5">
-        <blockquote class="text-lg md:text-xl [text-wrap:balance]">
-          Astroship has been a lifesaver for our finance department. Its robust
-          accounting features and automated invoicing have saved us countless
-          hours of manual work. It's the perfect financial companion for any
-          business!
-        </blockquote>
-        <div class="flex items-center gap-3 mt-10">
-          <div class="shrink-0">
-            <picture>
-              <source
-                srcset="https://astroship-pro.web3templates.com/_astro/6qf1uljGpU4_1wFayD.avif"
-                type="image/avif"
-              /><source
-                srcset="https://astroship-pro.web3templates.com/_astro/6qf1uljGpU4_1FrbON.webp"
-                type="image/webp"
-              />
-              <img
-                src="https://astroship-pro.web3templates.com/_astro/6qf1uljGpU4_Z1Fr7UY.png"
-                class="rounded-full w-12 h-12 object-cover bg-slate-100"
-                alt="Sarah Martinez"
-                loading="lazy"
-                width="48"
-                height="48"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <div>
-            <h2 class="font-medium text-slate-800">Sarah Martinez</h2>
-            <p class="text-sm text-slate-600">
-              Finance Controller at MoneyMakers
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    </div> ) }
+    <!--   <div -->
+    <!--     class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5"> -->
+    <!--     <blockquote class="text-lg md:text-xl [text-wrap:balance]"> -->
+    <!--       I highly recommend Eugen to anyone seeking a talented and reliable developer. His expertise, commitment to quality, and collaborative approach make him an invaluable asset. I look forward to future opportunities to work together. -->
+    <!--     </blockquote> -->
+    <!--     <div class="flex items-center gap-3 mt-10"> -->
+    <!--       <div class="shrink-0"> -->
+    <!--         <picture> -->
+    <!--           <img -->
+    <!--             src="https://media.licdn.com/dms/image/D4E03AQHp5PmAqmgW0w/profile-displayphoto-shrink_200_200/0/1680120619447?e=1724889600&v=beta&t=GVU8IhpYxI489Yomt1kCj-aqGwvUTl7LRtuDiJuYi9w" -->
+    <!--             class="rounded-full w-12 h-12 object-cover bg-slate-100" -->
+    <!--             alt="Filip Lukic" -->
+    <!--             loading="lazy" -->
+    <!--             width="48" -->
+    <!--             height="48" -->
+    <!--             decoding="async" -->
+    <!--           /> -->
+    <!--         </picture> -->
+    <!--       </div> -->
+    <!--       <div> -->
+    <!--         <h2 class="font-medium text-slate-800">Filip Lukić</h2> -->
+    <!--         <p class="text-sm text-slate-600">Co-Founder at ahead&</p> -->
+    <!--       </div> -->
+    <!--     </div> -->
+    <!-- </div> -->
+    <!-- <div -->
+    <!--     class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5"> -->
+    <!--     <blockquote class="text-lg md:text-xl [text-wrap:balance]"> -->
+    <!--       Very highly-skilled full stack developer. I'm certainly looking forward to working with you again! -->
+    <!--     </blockquote> -->
+    <!--     <div class="flex items-center gap-3 mt-10"> -->
+    <!--       <div class="shrink-0"> -->
+    <!--         <picture> -->
+    <!--           <img -->
+    <!--             src="https://media.licdn.com/dms/image/C5603AQH0V1d37UySNw/profile-displayphoto-shrink_100_100/0/1564477552968?e=1724889600&v=beta&t=ceQ-ngPMBne0_t9i5bTG6VUCtAc0kt0cE3meHRG9ddI" -->
+    <!--             class="rounded-full w-12 h-12 object-cover bg-slate-100" -->
+    <!--             alt="Jaynesh Vekaria" -->
+    <!--             loading="lazy" -->
+    <!--             width="48" -->
+    <!--             height="48" -->
+    <!--             decoding="async" -->
+    <!--           /> -->
+    <!--         </picture> -->
+    <!--       </div> -->
+    <!--       <div> -->
+    <!--         <h2 class="font-medium text-slate-800">Jaynesh Vekaria</h2> -->
+    <!--         <p class="text-sm text-slate-600"> -->
+    <!--           Founder of MOONBEAR LTD -->
+    <!--         </p> -->
+    <!--       </div> -->
+    <!--     </div> -->
+    <!--   </div><div -->
+    <!--     class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5"> -->
+    <!--     <blockquote class="text-lg md:text-xl [text-wrap:balance]"> -->
+    <!--       Eugen delivered exceptional results in building the core of our Wordpress Theme and developing a plugin for our WooCommerce checkout flow. His communication skills were outstanding, keeping us informed at every stage of the project. We are thoroughly satisfied and will definitely consider working with Eugen again in the future. -->
+    <!--     </blockquote> -->
+    <!--     <div class="flex items-center gap-3 mt-10"> -->
+    <!--       <div class="shrink-0"> -->
+    <!--         <picture> -->
+    <!--           <img -->
+    <!--             src="https://media.licdn.com/dms/image/D5603AQEUe4QOTjoIpg/profile-displayphoto-shrink_100_100/0/1718912414079?e=1724889600&v=beta&t=WVIi5c9Ig76abDbCYwdhQqiMsx9AdHbVw_60b0vu0Ms" -->
+    <!--             class="rounded-full w-12 h-12 object-cover bg-slate-100" -->
+    <!--             alt="Michael Wechsler" -->
+    <!--             loading="lazy" -->
+    <!--             width="48" -->
+    <!--             height="48" -->
+    <!--             decoding="async" -->
+    <!--           /> -->
+    <!--         </picture> -->
+    <!--       </div> -->
+    <!--       <div> -->
+    <!--         <h2 class="font-medium text-slate-800">Michael Wechsler</h2> -->
+    <!--         <p class="text-sm text-slate-600">Product Manager at MEINE ERDE</p> -->
+    <!--       </div> -->
+    <!--     </div> -->
+    <!--   </div><div -->
+    <!--     class="rounded-2xl relative p-8 bg-gray-50/60 backdrop-blur-md transition-all ring-1 ring-gray-200/50 shadow hover:shadow-lg w-[calc(100vw-5.75rem)] max-w-md flex flex-col justify-between snap-start snap-always shrink-0 first-of-type:scroll-m-10 scroll-m-5"> -->
+    <!--     <blockquote class="text-lg md:text-xl [text-wrap:balance]"> -->
+    <!--       Eugen was amazing and helped me to build a WordPress Plugin for my SaaS in almost no time and without real guidance from my side! -->
+    <!--     </blockquote> -->
+    <!--     <div class="flex items-center gap-3 mt-10"> -->
+    <!--       <div class="shrink-0"> -->
+    <!--         <picture> -->
+    <!--           <img -->
+    <!--             src="https://media.licdn.com/dms/image/D4D03AQEtd8q5CvDbmg/profile-displayphoto-shrink_100_100/0/1642691242252?e=1724889600&v=beta&t=65hMwL59CNZ0PInYP7hgy98BYTR5T3aIIMklXFFzims" -->
+    <!--             class="rounded-full w-12 h-12 object-cover bg-slate-100" -->
+    <!--             alt="Marc Zwiebler" -->
+    <!--             loading="lazy" -->
+    <!--             width="48" -->
+    <!--             height="48" -->
+    <!--             decoding="async" -->
+    <!--           /> -->
+    <!--         </picture> -->
+    <!--       </div> -->
+    <!--       <div> -->
+    <!--         <h2 class="font-medium text-slate-800">Marc Zwiebler</h2> -->
+    <!--         <p class="text-sm text-slate-600">Founder of KURABU</p> -->
+    <!--       </div> -->
+    <!--     </div> -->
+    <!--   </div> -->
   </div>
 </div>
