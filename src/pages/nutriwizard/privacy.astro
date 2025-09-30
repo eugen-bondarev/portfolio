@@ -1,0 +1,106 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+
+const CONTENT = `Privacy Policy
+
+Effective Date: September 27th, 2025
+
+App Name: Nutri Wizard
+
+We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how Nutri Wizard collects, uses, and stores information when you use our app.
+
+# 1. Data We Collect
+
+Meal Data (photos and text): When you upload photos or enter descriptions of meals, these are processed by our AI services to analyze nutritional values.
+
+Technical Data: Basic technical information (such as device type, operating system, app version, crash logs) may be collected to ensure the app works properly.
+
+We do not collect names, email addresses, phone numbers, or other directly identifying personal data.
+
+# 2. How We Process Data
+
+Google Cloud Services (Frankfurt, Germany): We securely store and process your meal data in servers located in the EU.
+
+OpenAI Services: Photos and text you provide are transmitted to OpenAI's API for analysis. We do not send personal identifiers, only the meal-related content you choose to provide.
+
+# 3. Purpose of Processing
+
+We process your data exclusively to:
+
+Analyze meals and calculate nutritional values.
+
+Provide feedback and insights about your diet.
+
+Improve the functionality and reliability of the app.
+
+# 4. Legal Basis (GDPR)
+
+Our processing is based on Art. 6(1)(b) GDPR (performance of a contract — providing the app's core features) and Art. 6(1)(f) GDPR (legitimate interest — app improvement).
+
+# 5. Data Retention
+
+Meal data is stored as long as you use the app and may be deleted when you remove your account or request deletion.
+
+Technical data (e.g., crash logs) is retained only as long as necessary for troubleshooting.
+
+# 6. Data Sharing
+
+We do not sell or share your data with third parties for marketing. Data is only shared with:
+
+Google Cloud (hosting and storage).
+
+OpenAI (processing meal photos and descriptions).
+
+# 7. Your Rights (GDPR)
+
+You have the right to:
+
+Access your data.
+
+Request correction or deletion.
+
+Restrict or object to processing.
+
+Request data portability.
+To exercise these rights, please contact us at the email below.
+
+# 8. Security
+
+We use industry-standard encryption and security measures to protect your data during transmission and storage.
+
+# 9. Contact
+
+If you have any questions about this Privacy Policy or your data, please contact:
+
+Email: eug.bondarev@gmail.com
+Responsible Entity (per GDPR): Eugen Bondarev`;
+
+// Simple markdown renderer for paragraphs and # titles
+function renderMarkdown(content: string): string {
+  return content
+    .split('\n')
+    .map(line => {
+      // Handle # titles
+      if (line.startsWith('# ')) {
+        return `<h1 class="text-3xl font-bold mb-6">${line.slice(2)}</h1>`;
+      }
+      // Handle regular paragraphs (non-empty lines)
+      if (line.trim() && !line.startsWith('#')) {
+        return `<p class="mb-4 leading-relaxed">${line}</p>`;
+      }
+      // Handle empty lines
+      return '';
+    })
+    .filter(line => line !== '')
+    .join('\n');
+}
+---
+
+<Layout title="Privacy Policy - Nutri Wizard">
+  <Container>
+    <main class="mt-16 max-w-4xl mx-auto">
+      <div class="prose prose-lg max-w-none" set:html={renderMarkdown(CONTENT)}></div>
+    </main>
+  </Container>
+</Layout>
